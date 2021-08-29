@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-blue : #1976d2;
+    --color-red : #FF5252;
+    --color-green : #4CAF50;
+    --color-yellow : #FFC107;
+    --color-white : #f9f9f9;
+    --color-dark-grey : #333;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--color-white);
+    color: var(--color-dark-grey);
+}
+
+a {
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    color: var(--color-dark-grey);
+    cursor: pointer;
+}
+
+input {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-dark-grey);
+    border-radius: 3px;
+}
+
+textarea, select {
+    background-color: var(--color-white);
+    border-color: var(--color-dark-grey);
+}
+
+header {
+    height: 70px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    padding: 20px 25px;
+}
+
+.logo {
+    font-size: 26px;
+    margin-right: 40px;
+}
+
+nav ul {
+    display: flex;
+}
+
+header nav ul {
+    width: 120%;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+nav li {
+    list-style-type: none;
+}
+
+main {
+    padding: 20px 25px;
+}
+
+main nav {
+    margin-bottom: 20px;
+}
+
+main nav ul {
+    width: 45%;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+main nav li:nth-child(odd) {
+    cursor: pointer;
+}
+
+main nav li:nth-child(even) {
+    font-weight: 600;
+    color: #888;
+}
+
+main nav .active {
+    font-weight: 600;
+    color: var(--color-blue);
+}
+
+.pilih-surat, .input-data-warga, .input-data-kelurahan {
+    height: 70vh;
+}
+
+.pilih-surat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.pilih-surat button {
+    font-size: 16px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: 15px 80px;
+    border-radius: 3px;
+}
+
+.pilih-surat button:hover {
+    background-color: rgba(25, 118, 210, .8);
+}
+
+.input-data-warga, .input-data-kelurahan {
+    display: none;
+}
+
+.input-data-warga h2{
+    font-size: 20px;
+}
+
+.form {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 10px 30px 0;
+}
+
+.form div {
+    width: 25%;
+}
+
+input, textarea, select {
+    padding: 10px 15px;
+    width: 100%;
+    display: block;
+    margin-top: 3px;
+    font-family: 'Arial', sans-serif;
+}
+
+label {
+    font-size: 14px;
+}
+
+.buttons {
+    width: 25%;
+    text-align: center;
+}
+
+button {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+button:nth-last-child(1) {
+    margin-right: 0;
+}
+
+
+
+
+

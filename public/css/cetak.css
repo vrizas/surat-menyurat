@@ -1,0 +1,113 @@
+@page {
+    size: auto;  
+    margin: 0;  
+}
+
+.surat {
+    color: black;
+}
+
+header.header-surat {
+    text-align: center;
+    font-size: 12px;
+    padding: 35px;
+    border-bottom: 3px solid black;
+    height: inherit;
+    background-color: inherit;
+    color: inherit;
+    display: inherit;
+}
+
+header.header-surat h1 {
+    margin-bottom: 5px;
+}
+
+header.header-surat h1:nth-last-child(1) {
+    margin-bottom: 0;
+}
+
+main.main-surat {
+    margin-top: 4px;
+    border-top: 2px solid black;
+    padding: 30px 100px;
+}
+
+.pembuka {
+    position: relative;
+    left: 85%;
+}
+
+.pembuka p {
+    margin-bottom: 2px;
+}
+
+.pembuka p:nth-child(1), .pembuka p:nth-child(6) {
+    margin-bottom: 15px;
+}
+
+.pembuka p:nth-child(7) {
+    margin-bottom: 0;
+}
+
+.isi h1, .nomor-surat {
+    text-align: center;
+}
+
+.isi h1 {
+    font-size: 22px;
+    text-decoration: underline;
+    margin-bottom: 3px;
+}
+
+.nomor-surat {
+    margin-bottom: 20px;
+}
+
+.indent {
+    text-indent: 20px;
+    margin-bottom: 10px;
+}
+
+table {
+    margin-bottom: 10px;
+}
+
+th, td {
+    padding: 5px 0;
+}
+
+.mengetahui {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.rt, .rw {
+    border-bottom: 1.5px solid black;
+    padding-bottom: 45px;
+    position: relative;
+}
+
+.rt p:nth-child(1), .rw p:nth-child(1) {
+    margin-bottom: 15px;
+}
+
+.mengetahui p {
+    margin-bottom: 5px;
+}
+
+.mengetahui img {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: 10px;
+    left: 45px;
+}
+
+.mengetahui .nama {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
