@@ -36,86 +36,13 @@
         </article>
         <article class="input-data-warga">
             <h2>Surat Pengantar</h2>
-            <div class='form'>
-                <div>
-                    <label for="nik">NIK</label>
-                    <input type="text" id="nik" name="nik">
-                </div>
-                <div>
-                    <label for="nama">Nama</label>
-                    <input type="text" name="nama">
-                </div>
-                <div>
-                    <label for="jenis-kelamin">Jenis Kelamin</label>
-                    <select name="jenis-kelamin">
-                        <option value="laki-laki">Laki-Laki</option>
-                        <option value="perempuan">Perempuan</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="tempat-lahir">Tempat Lahir</label>
-                    <input type="text" name="tempat-lahir">
-                </div>
-                <div>
-                    <label for="tgl-lahir">Tgl. Lahir</label>
-                    <input type="date" name="tgl-lahir">
-                </div>
-                <div>
-                    <label for="agama">Agama</label>
-                    <input type="text" name="agama">
-                </div>
-                <div>
-                    <label for="status">Status</label>
-                    <select name="status">
-                        <option value="belum kawin">Belum Kawin</option>
-                        <option value="kawin">Kawin</option>
-                        <option value="cerai hidup">Cerai Hidup</option>
-                        <option value="cerai mati">Cerai Mati</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="kewarganegaraan">Kewarganegaraan</label>
-                    <input type="text" name="kewarganegaraan">
-                </div>
-                <div>
-                    <label for="pendidikan">Pendidikan</label>
-                    <input type="text" name="pendidikan">
-                </div>
-                <div>
-                    <label for="pekerjaan">Pekerjaan</label>
-                    <input type="text" name="pekerjaan">
-                </div>
-                <div>
-                    <label for="nomor-kk">Nomor KK</label>
-                    <input type="text" name="nomor-kk">
-                </div>
-                <div>
-                    <label for="rt">RT</label>
-                    <input type="text" name="rt">
-                </div>
-                <div>
-                    <label for="rw">RW</label>
-                    <input type="text" name="rw">
-                </div>
-                <div>
-                    <label for="alamat">Alamat</label>
-                    <textarea name="alamat" id="alamat" cols="30" rows="10"></textarea>
-                </div>
-                <div>
-                    <label for="keperluan">Keperluan</label>
-                    <input type="text" name="keperluan">
-                </div>
-                <div class="buttons">
-                    <button class='back'>Kembali</button>
-                    <button class='next'>Lanjutkan</button>
-                </div>
-            </div>       
+            <livewire:input-data-warga/>
         </article>
         <article class="input-data-kelurahan">
-            <div class='form'> 
+        <div class='form'> 
                 <div>
                     <label for="nomor-urut">Nomor Urut</label>
-                    <input type="text" name="nomor-urut">
+                    <input  type="text" name="nomor-urut">
                 </div>
                 <div>
                     <label for="nomor-register-rw">Nomor Register RW</label>
@@ -123,11 +50,11 @@
                 </div>
                 <div>
                     <label for="tgl-buku-register-rw">Tanggal Buku Register RW</label>
-                    <input type="text" name="tgl-buku-register-rw">
+                    <input  type="text" name="tgl-buku-register-rw">
                 </div>
                 <div>
                     <label for="tanda-tangan-rw">Tanda Tangan RW</label>
-                    <select name="tanda-tangan-rw">
+                    <select  name="tanda-tangan-rw">
                         <option value="rw 1">RW 1</option>
                         <option value="rw 2">RW 2</option>
                         <option value="rw 3">RW 3</option>
@@ -136,7 +63,7 @@
                 </div>
                 <div>
                     <label for="tanda-tangan-rt">Tanda Tangan RT</label>
-                    <select name="tanda-tangan-rt">
+                    <select  name="tanda-tangan-rt">
                         <option value="rt 1">RT 1</option>
                         <option value="rt 2">RT 2</option>
                         <option value="rt 3">RT 3</option>
@@ -145,13 +72,13 @@
                 </div>
                 <div class="buttons">
                     <button class='back'>Kembali</button>
-                    <button class='cetak'>Cetak Surat</button>
+                    <button wire:click="createKelurahan" class='cetak'>Cetak Surat</button>
                 </div>
             </div> 
         </article>
     </main>
     <!-- Surat -->
-    <div class="surat" style='display:none'>
+    <div class="surat" style='display:inherit'>
         <header class='header-surat'>
             <h1>RUKUN TETANGGA 001 RUKUN WARGA XI</h1>
             <h1>KELURAHAN LOWOKWARU KECAMATAN LOWOKWARU</h1>
@@ -159,7 +86,7 @@
         </header>
         <main class='main-surat'>
             <article class="pembuka">
-                <p>Malang, 26 Agustus 2021</p>
+                <p>MALANG, 26 Agustus 2021</p>
                 <p>Kepada:</p>
                 <p>Yth. Sdr.</p>
                 <p>Lurah Lowokwaru</p>
