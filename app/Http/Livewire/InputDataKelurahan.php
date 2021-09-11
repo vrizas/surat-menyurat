@@ -19,7 +19,7 @@ class InputDataKelurahan extends Component
     public $nikRt;
     public $namaRt;
     public $tandaTanganRt;
-    public $tombolTambahRw = 0;
+    
 
     protected $listeners = [
         'dataCreated' => '$refresh'
@@ -41,9 +41,6 @@ class InputDataKelurahan extends Component
         $this->tombolTambahRt = $on;
     }
 
-    public function showRwForm($on) {
-        $this->tombolTambahRw = $on;
-    }
 
     public function showConfirmDelete($id) {
         $this->tombolTambahRt = 0;
@@ -119,5 +116,98 @@ class InputDataKelurahan extends Component
         
     }
 
+    // RW
+    public $tombolTambahRw = 0;
+    public $tombolDeleteRw = 0;
+    public $updateFormRw = 0;
+    public $noRw;
+    public $nikRw;
+    public $namaRw;
+    public $tandaTanganRw;
+
+    public function showRwForm($on) {
+        $this->tombolDeleteRw = 0;
+        $this->updateFormRw = 0;
+
+        $this->noRw = '';
+        $this->nikRw = '';
+        $this->namaRw = '';
+        $this->tandaTanganRw = '';
+        $this->tombolTambahRw = $on;
+    }
+
+    public function showConfirmDeleteRw($id) {
+        $this->tombolTambahRw = 0;
+        $this->updateFormRw = 0;
+        $this->tombolDeleteRw = $id;
+    }
+
+    public function showUpdateFormRw($id) {
+        $this->tombolTambahRw = 0;
+        $this->tombolDeleteRw = 0;
+
+        $rw = RW::find($id);
+        $this->noRw = $rw->nomorRw;
+        $this->nikRw = $rw->nik;
+        $this->namaRw = $rw->nama;
+        $this->tandaTanganRw = $rw->tandaTangan;
+        $this->updateFormRw = $id;
+    }
+
+    public function batalUpdateRw() {
+        $this->updateFormRw = 0;
+    }
+
+    public function createDataRw() {
+        $dataValid = $this->validate([
+            'noRw' => 'required',
+            'nikRw' => 'required',
+            'namaRw' => 'required',
+            'tandaTanganRw' => 'required|image|mimes:jpg,jpeg,png|max:5048',
+        ]);
+
+        $rw = RW::where('nomorRw', $this->noRw)->first();
+
+        if(!$rw) {
+            RW::create([
+                'nomorRw' => $this->noRw,
+                'nik' => $this->nikRw,
+                'nama' => $this->namaRw,
+                'tandaTangan' => $this->tandaTanganRw->store('img/tandaTanganRw'),
+            ]);
+        } else if($rw) {
+            $rw->nomorRw = $this->noRw;
+            $rw->nik = $this->nikRw;
+            $rw->nama = $this->namaRw;
+            $rw->tandaTangan = $this->tandaTanganRw->store('img/tandaTanganRw');
+            $rw->save();
+        }
+
+        
+        $this->noRw = '';
+        $this->nikRw = '';
+        $this->namaRw = '';
+        $this->tandaTanganRw = '';
+        $this->tombolTambahRw = 0;
+        $this->emit('dataCreated');
+    }
+
+    public function updateDataRw($id) {
+        $rw = RW::find($id);
+        $rw->nomorRw = $this->noRw;
+        $rw->nik = $this->nikRw;
+        $rw->nama = $this->namaRw;
+        $rw->tandaTangan = $this->tandaTanganRw;
+        $rw->save();
+
+        $this->updateFormRw = 0;
+    }
+
+    public function deleteDataRw($id) {
+        $rw = RW::find($id);
+        $rw->delete();
+        $this->confirmDelete = 0;
+        
+    }
 }
 
