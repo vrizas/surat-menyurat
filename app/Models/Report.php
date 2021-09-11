@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Village extends Model
+class Report extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'ttd-rt',
-        'ttd-rw',
-
+        'no',
+        'nik',
+        'noRegisterRw',
+        'tanggal',
+        'keperluan',
     ];
 }

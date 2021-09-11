@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use PDF;
+use App\Models\Member;
+use App\Models\Report;
+use App\Models\RT;
+use App\Models\RW;
+use Carbon\Carbon;
+
+class PDFController extends Controller
+{
+    public function index($nik) {
+        $member = Member::where('nik', $nik)->first();
+        $report = Report::where('nik', $nik)->latest()->first();
+        $RT = RT::where('nomorRt', $member->rt)->first();
+        $RW = RW::where('nomorRw', $member->rw)->first();
+
+        setlocale(LC_TIME, 'id_ID');
+        \Carbon\Carbon::setLocale('id');
+        \Carbon\Carbon::now()->formatLocalized("%A, %d %B %Y");
+        $today = Carbon::now()->isoFormat('D MMMM Y');
+        $year = Carbon::now()->isoFormat('Y');
+        $month = Carbon::now()->isoFormat('M');
+
+        // $pdf = PDF::loadView('cetak-surat', $member)->setPaper('a4', 'potrait');;
+        // return $pdf->stream('surat.pdf');
+
+        return view('cetak')->with('member', $member)
+                            ->with('report', $report)
+                            ->with('today', $today)
+                            ->with('year', $year)
+                            ->with('rmwMonth', getRomawi($month))
+                            ->with('RT', $RT)
+                            ->with('RW', $RW);
+    }
+}
+
+function getRomawi($month){
+    switch ($month){
+        case 1: 
+            return "I";
+            break;
+        case 2:
+            return "II";
+            break;
+        case 3:
+            return "III";
+            break;
+        case 4:
+            return "IV";
+            break;
+        case 5:
+            return "V";
+            break;
+        case 6:
+            return "VI";
+            break;
+        case 7:
+            return "VII";
+            break;
+        case 8:
+            return "VIII";
+            break;
+        case 9:
+            return "IX";
+            break;
+        case 10:
+            return "X";
+            break;
+        case 11:
+            return "XI";
+            break;
+        case 12:
+            return "XII";
+            break;
+    }
+}

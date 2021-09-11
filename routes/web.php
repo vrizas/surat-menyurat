@@ -1,18 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\PDFController;
 
 Route::get('/', function () {
     return view('create-surat');
 });
+
+Route::get('data-warga', function () {
+    return view('data-warga');
+});
+
+Route::get('data-kelurahan', function () {
+    return view('data-kelurahan');
+});
+
+Route::get('cetak-surat/{nik}', [PDFController::class, 'index']);

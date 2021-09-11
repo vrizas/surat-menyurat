@@ -12,21 +12,17 @@ class Member extends Model
     protected $fillable = [
         'nik',
         'nama',
-        'jenis-kelamin',
+        'jenisKelamin',
         'ttl',
         'agama',
         'status',
         'negara',
         'pendidikan',
         'pekerjaan',
-        'no-kk',
+        'noKk',
         'rt',
         'rw',
         'alamat',
         'keperluan',
-
-        
-        
-
     ];
 }
