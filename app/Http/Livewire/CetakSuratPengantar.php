@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Member;
-use App\Models\Report;
+use App\Models\Queue;
 use Livewire\Component;
 use DB;
 use Carbon\Carbon;
@@ -40,6 +40,25 @@ class CetakSuratPengantar extends Component
         return view('livewire.cetak-surat-pengantar')->with('flashMessage', $this->flashMessage);
     }
 
+    public function updatedNik() {
+        $member = Member::where('nik', ((int)$this->nik))->first();
+        if($member) {
+            $this->nama = $member->nama;
+            $this->jenisKelamin = $member->jenisKelamin;
+            $this->tempat = $member->tempatLahir;
+            $this->tanggal = $member->tanggalLahir;
+            $this->agama = $member->agama;
+            $this->status = $member->status;
+            $this->pendidikan = $member->pendidikan;
+            $this->negara = $member->negara;
+            $this->pekerjaan = $member->pekerjaan;
+            $this->noKk = $member->noKk;
+            $this->rt = $member->rt;
+            $this->rw = $member->rw;
+            $this->alamat = $member->alamat;
+        }
+    }
+
     public function showConfirm($on) {
         if($on == 1) {
             if($this->nik == '' ||
@@ -71,11 +90,7 @@ class CetakSuratPengantar extends Component
 
     public function cetakSurat()
     {
-        $dataRegister = new SheetDB('ryjcf3y4rzhc0');
-
         $member = Member::where('nik', $this->nik)->first();
-        \Carbon\Carbon::setLocale('id');
-        \Carbon\Carbon::now()->formatLocalized("%A, %d %B %Y");
 
         $dataValid = $this->validate([
             'nik' => 'required',
@@ -100,7 +115,8 @@ class CetakSuratPengantar extends Component
                 'nik' =>$this->nik,
                 'nama' =>$this->nama,
                 'jenisKelamin' =>$this->jenisKelamin,
-                'ttl' =>$this->tempat.', '.Carbon::parse($this->tanggal)->isoFormat('D MMMM Y'),
+                'tempatLahir' =>$this->tempat,
+                'tanggalLahir' =>$this->tanggal,
                 'agama' =>$this->agama,
                 'status' =>$this->status,
                 'pendidikan' =>$this->pendidikan,
@@ -114,7 +130,8 @@ class CetakSuratPengantar extends Component
         } else if($member) {
             $member->nama = $this->nama;
             $member->jenisKelamin = $this->jenisKelamin;
-            $member->ttl = $this->tempat.', '.Carbon::parse($this->tanggal)->isoFormat('D MMMM Y');
+            $member->tempatLahir = $this->tempat;
+            $member->tanggalLahir = $this->tanggal;
             $member->agama = $this->agama;
             $member->status = $this->status;
             $member->negara = $this->negara;
@@ -127,26 +144,28 @@ class CetakSuratPengantar extends Component
             $member->save();
         }
 
-        Report::create([
-            'no' => DB::table('reports')->count() + 1,
-            'noRegisterRw' => DB::table('reports')->count() + 1,
+        Queue::create([
             'nik' => $this->nik,
-            'tanggal' => Carbon::now()->isoFormat('DD-MM-Y'),
             'keperluan' => $this->keperluan,
         ]);
-
-        // $dataRegister->create([
-        //     'No.' => DB::table('reports')->count() + 1,
-        //     'Nomor dan Tanggal' => DB::table('reports')->count() + 1 .', '.Carbon::now()->format('Y-m-d'),
-        //     'Nama' => $this->nama,
-        //     'RT/RW' =>$this->rt .' / '.$this->rw,
-        //     'Keperluan' =>$this->keperluan,
-        // ]);
-
+        
+        $this->nik = '';
+        $this->nama = '';
+        $this->jenisKelamin = '';
+        $this->tempat = '';
+        $this->tanggal = '';
+        $this->agama = '';
+        $this->status = '';
+        $this->negara = '';
+        $this->pendidikan = '';
+        $this->pekerjaan = '';
+        $this->noKk = '';
+        $this->rt = '';
+        $this->rw = '';
+        $this->alamat = '';
+        $this->keperluan = '';
         $this->confirm = 0;
         $this->emit('Cetak');
-
-        return redirect()->to('cetak-surat/'. $this->nik);
     }
     
 }

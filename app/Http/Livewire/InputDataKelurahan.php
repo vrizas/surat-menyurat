@@ -27,7 +27,7 @@ class InputDataKelurahan extends Component
 
     public function render()
     {
-        return view('livewire.input-data-kelurahan')->with('r_t_s', RT::get());
+        return view('livewire.input-data-kelurahan')->with('r_t_s', RT::get())->with('r_w_s', RW::get());
     }
 
     public function showRtForm($on) {
@@ -42,7 +42,7 @@ class InputDataKelurahan extends Component
     }
 
 
-    public function showConfirmDelete($id) {
+    public function showConfirmDeleteRt($id) {
         $this->tombolTambahRt = 0;
         $this->updateFormRt = 0;
         $this->tombolDeleteRt = $id;

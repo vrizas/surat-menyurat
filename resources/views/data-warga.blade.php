@@ -28,10 +28,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{{ url('/') }}">Buat Surat</a></li>
-                <li><a href="{{ url('/data-warga') }}">Data Warga</a></li>
-                <li><a href="{{ url('/data-kelurahan') }}">Data Kelurahan</a></li>
-                <li><a href="{{ url('/buku-register') }}">Buku Register</a></li>
+                <li><a href="{{ url('/admin/list-cetak') }}">Antrian Cetak</a></li>
+                <li><a href="{{ url('/admin/data-warga') }}">Data Warga</a></li>
+                <li><a href="{{ url('/admin/data-kelurahan') }}">Data Kelurahan</a></li>
+                <li><a href="{{ url('/admin/buku-regster') }}">Buku Register</a></li>
             </ul>
         </nav>
     </header>

@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Menyurat</title>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/data-kelurahan.css') }}">
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ asset('css/antri-cetak.css') }}">
     @livewireStyles
 </head>
 <body>
@@ -29,8 +28,19 @@
         </nav>
     </header>
     <main>
-        <livewire:input-data-kelurahan/>
+        <article>
+            <h2>Antrian Cetak Surat</h2>
+            <livewire:queue-list />
+        </article>
     </main>
+    <script>
+        window.addEventListener( "pageshow", function ( event ) {
+            const historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+            if ( historyTraversal ) {
+                window.location.reload();
+        }
+});
+    </script>
     @livewireScripts
 </body>
 </html>

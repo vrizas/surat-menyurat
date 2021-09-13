@@ -63,20 +63,20 @@
                     <label for="rt">RT</label>
                     <select wire:model="rt" id="rt" name="rt">
                         <option hidden>Pilih Salah Satu</option>
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
                     </select>
                 </div>
                 <div>
                     <label for="rw">RW</label>
                     <select wire:model="rw" id="rw" name="rw">
                         <option hidden>Pilih Salah Satu</option>
-                        <option value="I">01</option>
-                        <option value="II">02</option>
-                        <option value="III">03</option>
-                        <option value="IV">04</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
                     </select>
                 </div>
                 <div>
@@ -90,8 +90,10 @@
                 @if($confirm == 1)
                 <div class="confirm">
                     <p>Apakah Anda yakin dengan data yang telah Anda masukkan?</p>
-                    <button wire:click="showConfirm(0)">Batal</button>
-                    <button class='yes' wire:click="cetakSurat">Simpan</button>
+                    <div>
+                        <button wire:click="showConfirm(0)">Batal</button>
+                        <button class='yes' wire:click="createData">Simpan</button>
+                    </div>
                 </div>
                 @endif
             </div>     

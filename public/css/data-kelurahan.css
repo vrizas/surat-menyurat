@@ -49,15 +49,7 @@ header {
 
 main {
     padding: 0 20px;
-    margin-top: 10px;
-}
-
-.search-form input[type="search"]{
-    width: 50%;
-}
-
-.search-form input[type="submit"] {
-    background-color: var(--color-blue);
+    margin-top: 20px;
 }
 
 .card {
@@ -123,14 +115,24 @@ section h2 {
     height: 100%;
 }
 
-.item i {
-    display: flex;
-    font-size: 40px;
-    cursor: pointer;
+.btn-plus-wrapper {
     width: inherit;
     height: inherit;
+    display: flex;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
+}
+
+img.btn-plus {
+    width: 35px;
+    height: 35px;
+}
+
+img.tanda-tangan {
+    width: 150px;
+    height: 80px;
+    object-fit: cover;
 }
 
 .item:hover {

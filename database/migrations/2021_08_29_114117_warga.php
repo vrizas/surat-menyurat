@@ -18,7 +18,8 @@ class Warga extends Migration
             $table->bigInteger('nik');
             $table->string('nama');
             $table->string('jenisKelamin');
-            $table->string('ttl');
+            $table->string('tempatLahir');
+            $table->date('tanggalLahir');
             $table->string('agama');
             $table->string('status');
             $table->string('negara');

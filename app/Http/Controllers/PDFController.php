@@ -13,14 +13,17 @@ use Carbon\Carbon;
 class PDFController extends Controller
 {
     public function index($nik) {
-        $member = Member::where('nik', $nik)->first();
-        $report = Report::where('nik', $nik)->latest()->first();
-        $RT = RT::where('nomorRt', $member->rt)->first();
-        $RW = RW::where('nomorRw', $member->rw)->first();
-
         setlocale(LC_TIME, 'id_ID');
         \Carbon\Carbon::setLocale('id');
         \Carbon\Carbon::now()->formatLocalized("%A, %d %B %Y");
+
+        $member = Member::where('nik', $nik)->first();
+        $tanggalLahir = Member::select('tanggalLahir')->where('nik', $nik)->first()->tanggalLahir;
+        $tempatLahir = Member::select('tempatLahir')->where('nik', $nik)->first()->tempatLahir;
+        $ttl = $tempatLahir . ', ' . Carbon::parse($tanggalLahir)->isoFormat('D MMMM Y');
+        $report = Report::where('nik', $nik)->latest()->first();
+        $RT = RT::where('nomorRt', $member->rt)->first();
+        $RW = RW::where('nomorRw', $member->rw)->first();
         $today = Carbon::now()->isoFormat('D MMMM Y');
         $year = Carbon::now()->isoFormat('Y');
         $month = Carbon::now()->isoFormat('M');
@@ -29,6 +32,7 @@ class PDFController extends Controller
         // return $pdf->stream('surat.pdf');
 
         return view('cetak')->with('member', $member)
+                            ->with('ttl', $ttl)
                             ->with('report', $report)
                             ->with('today', $today)
                             ->with('year', $year)

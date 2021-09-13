@@ -75,11 +75,9 @@ class InputDataWarga extends Component
         }
     }
 
-    public function cetakSurat()
+    public function createData()
     {
         $member = Member::where('nik', $this->nik)->first();
-        \Carbon\Carbon::setLocale('id');
-        \Carbon\Carbon::now()->formatLocalized("%A, %d %B %Y");
 
         $dataValid = $this->validate([
             'nik' => 'required',
@@ -103,7 +101,8 @@ class InputDataWarga extends Component
                 'nik' =>$this->nik,
                 'nama' =>$this->nama,
                 'jenisKelamin' =>$this->jenisKelamin,
-                'ttl' =>$this->tempat.', '.Carbon::parse($this->tanggal)->isoFormat('D MMMM Y'),
+                'tempatLahir' =>$this->tempat,
+                'tanggalLahir' =>$this->tanggal,
                 'agama' =>$this->agama,
                 'status' =>$this->status,
                 'pendidikan' =>$this->pendidikan,

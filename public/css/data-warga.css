@@ -95,7 +95,7 @@ label {
 }
 
 button {
-    background-color: var(--color-green) !important;
+    background-color: var(--color-blue) !important;
     color: var(--color-white) !important;
     padding: 10px 15px !important;
     border-radius: 3px !important;
@@ -104,23 +104,26 @@ button {
 }
 
 button.back {
-    background-color: var(--color-blue) !important;
+    background-color: var(--color-green) !important;
 }
 
 button:nth-last-child(1) {
     margin-right: 0;
 }
 
-.buttons .confirm {
+.confirm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     box-sizing: content-box;
     padding: 50px 30px;
     background-color: var(--color-white);
-    position: absolute;
-    top: 29vh;
-    left: 29vw;    
+    position: fixed;
+    top: 33vh;
+    left: 33vw;    
     border-radius: 3px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
-    text-align: center;
+    z-index: 9999999;
 }
 
 .confirm p {
@@ -130,11 +133,15 @@ button:nth-last-child(1) {
 }
 
 .confirm button {
-    background-color: var(--color-blue) !important;
+    background-color: var(--color-green) !important;
 }
 
 .confirm button:nth-last-child(1) {
-    background-color: var(--color-green) !important;
+    background-color: var(--color-blue) !important;
+}
+
+.confirm-delete button:nth-last-child(1) {
+    background-color: var(--color-red) !important;
 }
 
 .flashMessage {

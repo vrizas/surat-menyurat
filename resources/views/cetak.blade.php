@@ -51,7 +51,7 @@
                         <tr>
                             <td>Tempat/Tgl.Lahir</td>
                             <td>:</td>
-                            <td>{{$member->ttl}}</td>
+                            <td>{{$ttl}}</td>
                         </tr><tr>
                             <td>Agama</td>
                             <td>:</td>
@@ -118,7 +118,7 @@
                         <p>KETUA RW {{$member->rw}}</p>
                         <p>KELURAHAN LOWOKWARU</p>
                         <div class="tanda-tangan">
-                            <img src="{{asset('img/')}}/{{$RW->tandaTangan}}"></img>
+                            <img src="{{asset('')}}/{{$RW->tandaTangan}}"></img>
                         </div>
                         <p class="nama">{{$RW->nama}}</p>
                     </div>
@@ -127,7 +127,7 @@
                         <p>KETUA RT {{$member->rt}}</p>
                         <p>KELURAHAN LOWOKWARU</p>
                         <div class="tanda-tangan">
-                            <img src="{{asset('img/')}}/{{$RT->tandaTangan}}"></img>
+                            <img src="{{asset('')}}/{{$RT->tandaTangan}}"></img>
                         </div>
                         <p class="nama">{{$RT->nama}}</p>
                     </div>
