@@ -38,20 +38,16 @@
                     <th>Nama</th>
                     <th>Tanggal</th>
                     <th>Keperluan</th>
-                    <th></th>
-                    <th></th>
                 </tr>
+                @foreach($reports as $report)
                 <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td>Vrizas Izza Izzuddin</td>
-                    <td></td>
-                    <td>Nikah</td>
-                    <td colspan="2">
-                        <button class="btn-delete">Hapus</button>
-                        <button class="btn-cetak">Cetak Surat</button>
-                    </td>
+                    <td>{{$report->no}}</td>
+                    <td>{{$report->noRegisterRw}}</td>
+                    <td>{{$report->nama}}</td>
+                    <td>{{$report->tanggal}}</td>
+                    <td>{{$report->keperluan}}</td>
                 </tr>
+                @endforeach
             </table>
         </article>
     </main>
