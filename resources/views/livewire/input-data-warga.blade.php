@@ -63,20 +63,18 @@
                     <label for="rt">RT</label>
                     <select wire:model="rt" id="rt" name="rt">
                         <option hidden>Pilih Salah Satu</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        @foreach($r_t_s as $rt)
+                        <option value="{{$rt->nomorRt}}">{{$rt->nomorRt}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div>
                     <label for="rw">RW</label>
                     <select wire:model="rw" id="rw" name="rw">
                         <option hidden>Pilih Salah Satu</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        @foreach($r_w_s as $rw)
+                        <option value="{{$rw->nomorRw}}">{{$rw->nomorRw}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div>

@@ -49,7 +49,7 @@ Route::get('admin', function () {
 
 Route::get('test', [PDFController::class, 'create']);
 
-Route::get('cetak-surat/{nik}', [PDFController::class, 'render'])->middleware(['auth'])->name('cetak-surat');
+Route::get('cetak-surat/{nik}', [PDFController::class, 'cetakSurat'])->middleware(['auth'])->name('cetak-surat');
 
 Route::post('admin/download/buku-register', [PDFController::class, 'downloadBukuRegister'])->middleware(['auth'])->name('download-buku-register');
 

@@ -37,7 +37,7 @@ class TabelWarga extends Component
         \Carbon\Carbon::setLocale('id');
         \Carbon\Carbon::now()->formatLocalized("%A, %d %B %Y");
         
-        $members = DB::table('members')->get();
+        $members = DB::table('members')->orderBy('nik', 'ASC')->get();
 
         $ttl = array();
         $tanggalLahir = array();

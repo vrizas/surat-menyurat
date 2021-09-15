@@ -10,6 +10,7 @@ use Carbon\Carbon;
 
 class QueueList extends Component
 {
+    public $confirmDelete = 0;
 
     protected $listeners = [
         'showQueue' => '$refresh'
@@ -29,11 +30,16 @@ class QueueList extends Component
         $this->emit('showQueue');
     }
 
+    public function showConfirmDelete($id) {
+        $this->confirmDelete = $id;
+    }
+
     public function deleteQueue($id) {
         $queue = Queue::find($id);
         $queue->delete();
-        $this->emit('showQueue');
+        $confirmDelete = 0;
     }
+
 
     public function cetakSurat($id) {
         $queue = Queue::find($id);

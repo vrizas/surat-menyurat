@@ -7,7 +7,7 @@
                     @if($updateFormRt != $rt->id)
                     <div class="data-container">
                         <h3>RT {{$rt->nomorRt}}</h3>
-                        <img class="tanda-tangan" src="{{asset('')}}/{{$rt->tandaTangan}}" alt="Tanda Tangan">
+                        <img class="tanda-tangan" src="{{asset('public')}}/{{$rt->tandaTangan}}" alt="Tanda Tangan">
                         <p>{{$rt->nik}}</p>
                         <p>{{$rt->nama}}</p>
                         <div class="rak-buttons">
@@ -74,7 +74,7 @@
                     @if($updateFormRw != $rw->id)
                     <div class="data-container">
                         <h3>RW {{$rw->nomorRw}}</h3>
-                        <img class="tanda-tangan" src="{{asset('')}}/{{$rw->tandaTangan}}" alt="Tanda Tangan">
+                        <img class="tanda-tangan" src="{{asset('public')}}/{{$rw->tandaTangan}}" alt="Tanda Tangan">
                         <p>{{$rw->nik}}</p>
                         <p>{{$rw->nama}}</p>
                         <div class="rak-buttons">

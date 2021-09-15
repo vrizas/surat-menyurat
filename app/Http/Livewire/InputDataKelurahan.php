@@ -27,7 +27,7 @@ class InputDataKelurahan extends Component
 
     public function render()
     {
-        return view('livewire.input-data-kelurahan')->with('r_t_s', RT::get())->with('r_w_s', RW::get());
+        return view('livewire.input-data-kelurahan')->with('r_t_s', RT::orderBy('nomorRt', 'ASC')->get())->with('r_w_s', RW::orderBy('nomorRw', 'ASC')->get());
     }
 
     public function showRtForm($on) {
@@ -103,7 +103,7 @@ class InputDataKelurahan extends Component
         $rt->nomorRt = $this->noRt;
         $rt->nik = $this->nikRt;
         $rt->nama = $this->namaRt;
-        $rt->tandaTangan = $this->tandaTanganRt;
+        $rt->tandaTangan = $this->tandaTanganRt->store('img/tandaTanganRt');
         $rt->save();
 
         $this->updateFormRt = 0;
@@ -197,7 +197,7 @@ class InputDataKelurahan extends Component
         $rw->nomorRw = $this->noRw;
         $rw->nik = $this->nikRw;
         $rw->nama = $this->namaRw;
-        $rw->tandaTangan = $this->tandaTanganRw;
+        $rw->tandaTangan = $this->tandaTanganRw->store('img/tandaTanganRw');
         $rw->save();
 
         $this->updateFormRw = 0;

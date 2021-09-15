@@ -37,7 +37,11 @@ class CetakSuratPengantar extends Component
 
     public function render()
     {
-        return view('livewire.cetak-surat-pengantar')->with('flashMessage', $this->flashMessage);
+        $r_t_s = DB::table('r_t_s')->orderBy('nomorRt', 'ASC')->get();
+        $r_w_s = DB::table('r_w_s')->orderBy('nomorRw', 'ASC')->get();
+        
+                    
+        return view('livewire.cetak-surat-pengantar')->with('flashMessage', $this->flashMessage)->with('r_t_s',$r_t_s)->with('r_w_s',$r_w_s);
     }
 
     public function updatedNik() {
