@@ -34,8 +34,12 @@ main nav {
     margin-bottom: 5px;
 }
 
+main nav img {
+    width: 12px;
+}
+
 main nav ul {
-    width: 40%;
+    width: 30%;
     justify-content: space-between;
     font-size: 16px;
 }
@@ -53,8 +57,14 @@ main nav .active {
     color: var(--color-blue);
 }
 
-.pilih-surat, .input-data-warga, .input-data-kelurahan {
-    height: 70vh;
+.input-data-warga, .input-data-kelurahan {
+    display: none;
+    height: 81vh;
+    margin-top: 20px;
+}
+
+.pilih-surat {
+    height: 65vh;
 }
 
 .pilih-surat {
@@ -76,10 +86,6 @@ main nav .active {
 
 .pilih-surat button:hover {
     background-color: rgba(25, 118, 210, .8);
-}
-
-.input-data-warga, .input-data-kelurahan {
-    display: none;
 }
 
 .input-data-warga h2{
@@ -169,6 +175,76 @@ button.next {
     margin-top: -5px;
 }
 
+@media screen and (max-width: 575px) {
+
+    main {
+        padding: 11px 20px;
+    }
+    
+    main nav ul {
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+    }
+    
+    .input-data-warga {
+        height: fit-content;
+        margin-top: 20px;
+    }
+
+    .form {
+        display: inherit;
+        margin: 20px 0;
+        height: inherit;
+    }
+
+    .form > div {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    header.header {
+        position: inherit;
+    }
+
+    header .logo img {
+        width: 35px;
+    }
+    
+    header .logo h1 {
+        font-size: 18px;
+    }
+
+    header .logo p {
+        font-size: 13px;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width: 992px) {
+    main nav ul {
+        width: 50%;
+    }
+
+    .input-data-warga {
+        height: fit-content;
+        margin-top: 20px;
+    }
+
+    .form {
+        display: inherit;
+        margin: 20px 0;
+        height: inherit;
+    }
+
+    .form > div {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    header.header {
+        position: inherit;
+    }
+}
 
 
 

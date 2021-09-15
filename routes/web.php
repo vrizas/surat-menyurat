@@ -15,9 +15,17 @@ use App\Http\Controllers\ReportController;
 |
 */
 
+Route::get('../', function () {
+    return redirect()->route('create-surat');
+});
+
+Route::get('../../', function () {
+    return redirect()->route('create-surat');
+});
+
 Route::get('/', function () {
     return view('create-surat');
-});
+})->name('create-surat');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -41,7 +49,9 @@ Route::get('admin', function () {
 
 Route::get('test', [PDFController::class, 'create']);
 
-Route::get('cetak-surat/{nik}', [PDFController::class, 'index']);
+Route::get('cetak-surat/{nik}', [PDFController::class, 'render'])->middleware(['auth'])->name('cetak-surat');
+
+Route::post('admin/download/buku-register', [PDFController::class, 'downloadBukuRegister'])->middleware(['auth'])->name('download-buku-register');
 
 Route::get('admin/buku-register', [ReportController::class, 'render'])->middleware(['auth'])->name('buku-register');
 

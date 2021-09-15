@@ -12,7 +12,7 @@ class QueueList extends Component
 {
 
     protected $listeners = [
-        'deleteQueue' => '$refresh'
+        'showQueue' => '$refresh'
     ];
 
     public function render()
@@ -25,10 +25,14 @@ class QueueList extends Component
         return view('livewire.queue-list')->with('queues', $queues);
     }
 
+    public function refreshComponent() {
+        $this->emit('showQueue');
+    }
+
     public function deleteQueue($id) {
         $queue = Queue::find($id);
         $queue->delete();
-        $this->emit('deleteQueue');
+        $this->emit('showQueue');
     }
 
     public function cetakSurat($id) {

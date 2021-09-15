@@ -42,26 +42,26 @@ header.header {
 .logo {
     display: flex;
     align-items: center;
+    margin-right: 40px;
 }
 
 .logo img {
-    width: 50px;
+    width: 40px;
 }
 
 .logo h1 {
-    font-size: 24px;
-    margin-right: 40px;
+    font-size: 20px;
     font-weight: bold;
     color: var(--color-dark-grey);
 }
 
 header p {
-    font-size: 16px;
+    font-size: 14px;
     color: var(--color-dark-grey);
 }
 
 header a {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .logo .text {
@@ -72,10 +72,16 @@ nav ul {
     display: flex;
 }
 
-header nav ul {
-    width: 120%;
+header nav {
+    display: flex;
     justify-content: space-between;
+    width: 80%;
+    position: relative;
+}
+
+header nav ul {
     font-size: 18px;
+    gap: 20px;
 }
 
 nav li {
@@ -86,3 +92,47 @@ nav a:hover {
     text-decoration: underline !important;
 }
 
+nav a.user:hover {
+    text-decoration: none !important;
+}
+
+nav a.user {
+    cursor: pointer;
+}
+
+nav a.user img {
+    width: 11px;
+    margin-left: 5px;
+}
+
+.drop-down-content {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+
+.drop-down-content .options {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: white;
+    border-radius: 3px;
+    width: 130px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-logout {
+    background-color: transparent !important;
+    font-size: 12px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: var(--color-dark-grey) !important;
+    border: none;
+    cursor: pointer;
+}
+
+.active {
+    display: inherit;
+}

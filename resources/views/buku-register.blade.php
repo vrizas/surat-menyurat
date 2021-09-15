@@ -6,18 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Menyurat</title>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/antri-cetak.css') }}">
-    @livewireStyles
+    <link rel="stylesheet" href="{{ asset('css/buku-register.css') }}">
 </head>
 <body>
     <header class='header'>
-        <div class="logo">
+        <a href="{{ url('/') }}" class="logo">
             <img src="{{ asset('img/logo-malang.png') }}" alt="Logo Malang">
             <div class='text'>
                 <h1>Surat Menyurat</h1>
                 <p>Kelurahan Lowokwaru</p>
             </div>
-        </div>
+        </a>
         <nav>
             <ul>
                 <li><a href="{{ url('/admin/list-cetak') }}">Antrian Cetak</a></li>
@@ -25,12 +24,24 @@
                 <li><a href="{{ url('/admin/data-kelurahan') }}">Data Kelurahan</a></li>
                 <li><a href="{{ url('/admin/buku-regster') }}">Buku Register</a></li>
             </ul>
+            <ul>
+                <li><a href="" class="user">Admin<img src="{{ asset('img/chevron-down.svg') }}"></a></li>
+            </ul>
+            <form method="POST" action="{{ route('logout') }}" class="drop-down-content">
+                @csrf
+                <div class="options">
+                    <button class="btn-logout">Keluar</button>
+                </div>
+            </form>
         </nav>
     </header>
     <main>
         <article>
-            <button>Download PDF</button>
             <h2>Buku Register</h2>
+            <form method="POST" action="{{ url('/admin/download/buku-register') }}">
+                @csrf
+                <button class="btn-download">Download PDF</button>
+            </form>
             <table>
                 <tr>
                     <th>No.</th>
@@ -51,6 +62,6 @@
             </table>
         </article>
     </main>
-    @livewireScripts
+    <script src="{{ asset('js/user-option.js') }}"></script>
 </body>
 </html>

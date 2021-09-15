@@ -1,4 +1,5 @@
-<div>
+<div wire:poll.visible>
+            <button wire:click="refreshComponent" class="btn-refresh"><img src="{{asset('img/arrow-clockwise.svg')}}">Perbarui</button>
             <table>
                 <tr>
                     <th>No.</th>

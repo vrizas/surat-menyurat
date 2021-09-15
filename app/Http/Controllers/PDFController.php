@@ -9,10 +9,11 @@ use App\Models\Report;
 use App\Models\RT;
 use App\Models\RW;
 use Carbon\Carbon;
+use DB;
 
 class PDFController extends Controller
 {
-    public function index($nik) {
+    public function cetakSurat($nik) {
         setlocale(LC_TIME, 'id_ID');
         \Carbon\Carbon::setLocale('id');
         \Carbon\Carbon::now()->formatLocalized("%A, %d %B %Y");
@@ -39,6 +40,19 @@ class PDFController extends Controller
                             ->with('rmwMonth', getRomawi($month))
                             ->with('RT', $RT)
                             ->with('RW', $RW);
+    }
+
+    public function downloadBukuRegister() {
+        $reports = DB::table('reports')
+                    ->join('members', 'reports.nik', '=', 'members.nik')
+                    ->select('reports.id','reports.no','reports.noRegisterRw','members.nama','reports.tanggal','reports.keperluan')
+                    ->get();
+        $data = [
+            'reports' => $reports,
+        ];
+
+        $pdf = PDF::loadView('download-buku-register', $data)->setPaper('a4', 'potrait');;
+        return $pdf->download('buku-register.pdf');
     }
 }
 

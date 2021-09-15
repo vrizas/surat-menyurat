@@ -165,7 +165,6 @@ class CetakSuratPengantar extends Component
         $this->alamat = '';
         $this->keperluan = '';
         $this->confirm = 0;
-        $this->emit('Cetak');
     }
     
 }

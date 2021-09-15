@@ -11,20 +11,20 @@
 </head>
 <body>
     <header class='header'>
-        <div class="logo">
+        <a href="{{ url('/') }}" class="logo">
             <img src="{{ asset('img/logo-malang.png') }}" alt="Logo Malang">
             <div class='text'>
                 <h1>Surat Menyurat</h1>
                 <p>Kelurahan Lowokwaru</p>
             </div>
-        </div>
+        </a>
     </header>
     <main>
         <nav>
             <ul>
-                <li class="active">Pemilihan Surat</li>
+                <li class="active">Pilih Surat</li>
                 <li><img src="{{asset('img/arrow.svg')}}"></li>
-                <li >Input Data Warga</li>
+                <li >Input Data</li>
                 <li><img src="{{asset('img/arrow.svg')}}"></li>
                 <li>Cetak Surat</li>
             </ul>
