@@ -25,14 +25,14 @@
                         </div>
                         <input type="number" wire:model="nikRt" name="nikRt" placeholder="masukkan NIK RT" required>
                         <input type="text" wire:model="namaRt" name="namaRt" placeholder="masukkan nama RT" required>
-                        <input type="submit" wire:click="updateDataRt({{$rt->id}})" onclick="event.preventDefault()" value="Tambah">
+                        <input type="submit" wire:click="updateDataRt({{$rt->id}})" onclick="event.preventDefault()" value="Simpan">
                     </form>
                     <button class="cancel-button cancel-add-button" wire:click="batalUpdateRt">Batal</button>
                     @endif
                 </article>
                 @if($tombolDeleteRt == $rt->id)
                 <div class="confirm-delete">
-                    <p>Apakah Anda yakin dengan data yang telah Anda masukkan?</p>
+                    <p>Apakah Anda yakin dengan data yang ingin anda hapus?</p>
                     <div>
                         <button wire:click="showConfirmDeleteRt(0)">Batal</button>
                         <button class='yes' wire:click="deleteDataRt({{$rt->id}})">Hapus</button>
@@ -92,14 +92,14 @@
                         </div>
                         <input type="number" wire:model="nikRw" name="nikRw" placeholder="masukkan NIK RW" required>
                         <input type="text" wire:model="namaRw" name="namaRw" placeholder="masukkan nama RW" required>
-                        <input type="submit" wire:click="updateDataRw({{$rw->id}})" onclick="event.preventDefault()" value="Tambah">
+                        <input type="submit" wire:click="updateDataRw({{$rw->id}})" onclick="event.preventDefault()" value="Simpan">
                     </form>
                     <button class="cancel-button cancel-add-button" wire:click="batalUpdateRw">Batal</button>
                     @endif
                 </article>
                 @if($tombolDeleteRw == $rw->id)
                 <div class="confirm-delete">
-                    <p>Apakah Anda yakin dengan data yang telah Anda masukkan?</p>
+                    <p>Apakah Anda yakin dengan data yang ingin anda hapus?</p>
                     <div>
                         <button wire:click="showConfirmDeleteRw(0)">Batal</button>
                         <button class='yes' wire:click="deleteDataRw({{$rw->id}})">Hapus</button>

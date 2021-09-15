@@ -103,10 +103,13 @@ class InputDataKelurahan extends Component
         $rt->nomorRt = $this->noRt;
         $rt->nik = $this->nikRt;
         $rt->nama = $this->namaRt;
-        $rt->tandaTangan = $this->tandaTanganRt->store('img/tandaTanganRt');
+        if($rt->tandaTangan != $this->tandaTanganRt){
+            $rt->tandaTangan = $this->tandaTanganRt->store('img/tandaTanganRt');
+        }
         $rt->save();
 
         $this->updateFormRt = 0;
+        
     }
 
     public function deleteDataRt($id) {
@@ -197,7 +200,9 @@ class InputDataKelurahan extends Component
         $rw->nomorRw = $this->noRw;
         $rw->nik = $this->nikRw;
         $rw->nama = $this->namaRw;
-        $rw->tandaTangan = $this->tandaTanganRw->store('img/tandaTanganRw');
+        if($rw->tandaTangan != $this->tandaTanganRw){
+            $rw->tandaTangan = $this->tandaTanganRw->store('img/tandaTanganRw');
+        }
         $rw->save();
 
         $this->updateFormRw = 0;

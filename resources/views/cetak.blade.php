@@ -31,7 +31,7 @@
                 <section>
                     <h1>SURAT PENGANTAR</h1>
                     <p class="nomor-surat">Nomor: {{$report->no}} / {{$member->rt}}-{{$member->rw}} / {{$rmwMonth}} {{$year}}</p>
-                    <p class="indent">Yang bertanda tangan di bawah ini Ketua RT {{$member->rt}} {{$member->rw}} Kelurahan Lowokwaru Kecamatan Lowokwaru Kota Malang. Dengan ini menerangkan bahwa:</p>
+                    <p class="indent">Yang bertanda tangan di bawah ini Ketua RT {{$member->rt}} RW {{$member->rw}} Kelurahan Lowokwaru Kecamatan Lowokwaru Kota Malang. Dengan ini menerangkan bahwa:</p>
                     <table class="data-warga">
                         <tr>
                             <td>Nama</td>
@@ -118,7 +118,7 @@
                         <p>KETUA RW {{$member->rw}}</p>
                         <p>KELURAHAN LOWOKWARU</p>
                         <div class="tanda-tangan">
-                            <img src="{{asset('')}}/{{$RW->tandaTangan}}"></img>
+                            <img src="{{asset('public')}}/{{$RW->tandaTangan}}"></img>
                         </div>
                         <p class="nama">{{$RW->nama}}</p>
                     </div>
@@ -127,7 +127,7 @@
                         <p>KETUA RT {{$member->rt}}</p>
                         <p>KELURAHAN LOWOKWARU</p>
                         <div class="tanda-tangan">
-                            <img src="{{asset('')}}/{{$RT->tandaTangan}}"></img>
+                            <img src="{{asset('public')}}/{{$RT->tandaTangan}}"></img>
                         </div>
                         <p class="nama">{{$RT->nama}}</p>
                     </div>
