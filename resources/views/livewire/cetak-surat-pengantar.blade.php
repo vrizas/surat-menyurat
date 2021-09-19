@@ -86,11 +86,13 @@
                     <button class='back' onclick="event.preventDefault()">Kembali</button>
                     <button class='next' wire:click="showConfirm(1)" onclick="event.preventDefault()">Cetak Surat</button>
                     @if($confirm == 1)
-                    <div class="confirm">
-                        <p>Apakah Anda yakin dengan data yang telah Anda masukkan?</p>
-                        <button wire:click="showConfirm(0)" onclick="event.preventDefault()">Batal</button>
-                        <button class='yes' wire:click="cetakSurat" onclick="event.preventDefault()">Cetak Surat</button>
-                    </div>
+                    <section class="confirm-wrapper">
+                        <article class="confirm">
+                            <p>Apakah Anda yakin dengan data yang telah Anda masukkan?</p>
+                            <button wire:click="showConfirm(0)" onclick="event.preventDefault()">Batal</button>
+                            <button class='yes' wire:click="cetakSurat" onclick="event.preventDefault()">Cetak Surat</button>
+                        </article>
+                    </section>
                     @endif
                 </div>
             </form> 

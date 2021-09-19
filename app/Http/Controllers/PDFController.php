@@ -23,23 +23,23 @@ class PDFController extends Controller
         $tempatLahir = Member::select('tempatLahir')->where('nik', $nik)->first()->tempatLahir;
         $ttl = $tempatLahir . ', ' . Carbon::parse($tanggalLahir)->isoFormat('D MMMM Y');
         $report = Report::where('nik', $nik)->latest()->first();
-        $RT = RT::where('nomorRt', $member->rt)->first();
-        $RW = RW::where('nomorRw', $member->rw)->first();
+        $rt = RT::where('nomorRt', $member->rt)->first();
+        $rw = RW::where('nomorRw', $member->rw)->first();
         $today = Carbon::now()->isoFormat('D MMMM Y');
         $year = Carbon::now()->isoFormat('Y');
         $month = Carbon::now()->isoFormat('M');
-
-        // $pdf = PDF::loadView('cetak-surat', $member)->setPaper('a4', 'potrait');;
+        
+        // $pdf = PDF::loadView('cetak', $member)->setPaper('a4', 'potrait');;
         // return $pdf->stream('surat.pdf');
-
         return view('cetak')->with('member', $member)
                             ->with('ttl', $ttl)
                             ->with('report', $report)
                             ->with('today', $today)
                             ->with('year', $year)
-                            ->with('rmwMonth', getRomawi($month))
-                            ->with('RT', $RT)
-                            ->with('RW', $RW);
+                            ->with('rmwMonth', changeToRomawi($month))
+                            ->with('rt', $rt)
+                            ->with('rw', $rw)
+                            ->with('noRw', changeToRomawi($rw->nomorRw));
     }
 
     public function downloadBukuRegister() {
@@ -56,8 +56,8 @@ class PDFController extends Controller
     }
 }
 
-function getRomawi($month){
-    switch ($month){
+function changeToRomawi($number){
+    switch ($number){
         case 1: 
             return "I";
             break;

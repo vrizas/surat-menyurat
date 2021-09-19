@@ -13,7 +13,7 @@
 <body class='A4'>
     <section class="sheet padding-10mm">
         <header>
-            <h1>RUKUN TETANGGA {{$member->rt}} RUKUN WARGA {{$member->rw}}</h1>
+            <h1>RUKUN TETANGGA {{$member->rt}} RUKUN WARGA {{$noRw}}</h1>
             <h1>KELURAHAN LOWOKWARU KECAMATAN LOWOKWARU</h1>
             <h1>KOTA MALANG</h1>
         </header>
@@ -30,7 +30,7 @@
             <article class="isi">
                 <section>
                     <h1>SURAT PENGANTAR</h1>
-                    <p class="nomor-surat">Nomor: {{$report->no}} / {{$member->rt}}-{{$member->rw}} / {{$rmwMonth}} {{$year}}</p>
+                    <p class="nomor-surat">Nomor: {{$report->no}} / {{$member->rt}}-{{$noRw}} / {{$rmwMonth}} {{$year}}</p>
                     <p class="indent">Yang bertanda tangan di bawah ini Ketua RT {{$member->rt}} RW {{$member->rw}} Kelurahan Lowokwaru Kecamatan Lowokwaru Kota Malang. Dengan ini menerangkan bahwa:</p>
                     <table class="data-warga">
                         <tr>
@@ -42,9 +42,9 @@
                             <td>Jenis Kelamin</td>
                             <td>:</td>
                             @if($member->jenisKelamin == 'Laki-Laki')
-                            <td><span>Laki-Laki</span> / <span class='line-through'>Perempuan</span></td>
+                            <td><span>Laki-Laki</span></td>
                             @elseif($member->jenisKelamin == 'Perempuan')
-                            <td><span class='line-through'>Laki-Laki</span> / <span>Perempuan</span></td>
+                            <td><span>Perempuan</span></td>
                             @endif
                             
                         </tr>
@@ -60,13 +60,13 @@
                             <td>Status</td>
                             <td>:</td>
                             @if($member->status == 'Belum Kawin')
-                            <td><span>Belum Kawin</span> / <span class='line-through'>Kawin</span> / <span class='line-through'>Cerai Hidup</span> / <span class='line-through'>Cerai Mati</span></td>
+                            <td><span>Belum Kawin</span></td>
                             @elseif($member->status == 'Kawin')
-                            <td><span class='line-through'>Belum Kawin</span> / <span>Kawin</span> / <span class='line-through'>Cerai Hidup</span> / <span class='line-through'>Cerai Mati</span></td>
+                            <td><span>Kawin</span></td>
                             @elseif($member->status == 'Cerai Hidup')
-                            <td><span class='line-through'>Belum Kawin</span> / <span class='line-through'>Kawin</span> / <span>Cerai Hidup</span> / <span class='line-through'>Cerai Mati</span></td>
+                            <td><span>Cerai Hidup</span></td>
                             @elseif($member->status == 'Cerai Mati')
-                            <td><span class='line-through'>Belum Kawin</span> / <span class='line-through'>Kawin</span> / <span class='line-through'>Cerai Hidup</span> / <span>Cerai Mati</span></td>
+                            <td><span>Cerai Mati</span></td>
                             @endif
                         </tr><tr>
                             <td>Kewarganegaraan</td>
@@ -115,21 +115,21 @@
                 <section class="mengetahui">
                     <div class="rw">
                         <p>Mengetahui,</p>
-                        <p>KETUA RW {{$member->rw}}</p>
+                        <p>KETUA RW {{$noRw}}</p>
                         <p>KELURAHAN LOWOKWARU</p>
                         <div class="tanda-tangan">
-                            <img src="{{asset('public')}}/{{$RW->tandaTangan}}"></img>
+                            <img src="{{asset('public')}}/{{$rw->tandaTangan}}"></img>
                         </div>
-                        <p class="nama">{{$RW->nama}}</p>
+                        <p class="nama">{{$rw->nama}}</p>
                     </div>
                     <div class="rt">
-                        <p>Mengetahui,</p>
-                        <p>KETUA RT {{$member->rt}}</p>
+                        <p style="visibility:hidden;">Mengetahui,</p>
+                        <p>KETUA RT {{$member->rt}} RW {{$noRw}}</p>
                         <p>KELURAHAN LOWOKWARU</p>
                         <div class="tanda-tangan">
-                            <img src="{{asset('public')}}/{{$RT->tandaTangan}}"></img>
+                            <img src="{{asset('public')}}/{{$rt->tandaTangan}}"></img>
                         </div>
-                        <p class="nama">{{$RT->nama}}</p>
+                        <p class="nama">{{$rt->nama}}</p>
                     </div>
                 </section>
             </article>

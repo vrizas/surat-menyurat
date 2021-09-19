@@ -67,7 +67,7 @@ textarea, select {
     flex-direction: column;
     align-content: space-between;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 10px;
     height: 100%;
 }
 
@@ -81,6 +81,7 @@ input, textarea, select {
     display: block;
     margin-top: 3px;
     font-family: 'Arial', sans-serif;
+    font-size: 14px;
 }
 
 label {
@@ -88,10 +89,8 @@ label {
 }
 
 .buttons {
-    position: absolute;
-    right: 85px;
-    bottom: 45vh;
-    width: fit-content;
+    margin-top: 10px;
+    text-align: center;
 }
 
 button {
@@ -134,10 +133,6 @@ button:nth-last-child(1) {
 
 .confirm button {
     background-color: var(--color-green) !important;
-}
-
-.confirm button:nth-last-child(1) {
-    background-color: var(--color-blue) !important;
 }
 
 .confirm-delete button:nth-last-child(1) {

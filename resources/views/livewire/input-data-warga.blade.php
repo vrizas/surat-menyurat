@@ -81,20 +81,20 @@
                     <label for="alamat">Alamat</label>
                     <textarea wire:model="alamat" name="alamat" id="alamat" cols="30" rows="10"></textarea>
                 </div> 
-            </form>
-            <div class="buttons">
-                <button wire:click="showForm(0)" class='back'>Batal</button>
-                <button wire:click="showConfirm(1)" class='next'>Simpan</button>
-                @if($confirm == 1)
-                <div class="confirm">
-                    <p>Apakah Anda yakin dengan data yang telah Anda masukkan?</p>
-                    <div>
-                        <button wire:click="showConfirm(0)">Batal</button>
-                        <button class='yes' wire:click="createData">Simpan</button>
+                <div class="buttons">
+                    <button wire:click="showForm(0)" class='back' onclick="event.preventDefault()">Batal</button>
+                    <button wire:click="showConfirm(1)" class='next' onclick="event.preventDefault()">Simpan</button>
+                    @if($confirm == 1)
+                    <div class="confirm">
+                        <p>Apakah Anda yakin dengan data yang telah Anda masukkan?</p>
+                        <div>
+                            <button wire:click="showConfirm(0)" onclick="event.preventDefault()">Batal</button>
+                            <button class='yes' wire:click="createData" onclick="event.preventDefault()">Simpan</button>
+                        </div>
                     </div>
+                    @endif
                 </div>
-                @endif
-            </div>     
+            </form>
         </div>            
     </article>        
     @endif              

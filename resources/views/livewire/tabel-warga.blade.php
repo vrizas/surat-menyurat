@@ -148,11 +148,11 @@
                                     <label for="alamat">Alamat</label>
                                     <textarea wire:model="alamat" name="alamat" id="alamat" cols="30" rows="10"></textarea>
                                 </div> 
+                                <div class="buttons">
+                                    <button wire:click="batalUpdateData" class='back' onclick="event.preventDefault()">Batal</button>
+                                    <button wire:click="updateData({{$member->id}})" class='next' onclick="event.preventDefault()">Simpan</button>
+                                </div>
                             </form>
-                            <div class="buttons">
-                                <button wire:click="batalUpdateData" class='back'>Batal</button>
-                                <button wire:click="updateData({{$member->id}})" class='next'>Simpan</button>
-                            </div>  
                         </div>            
                     </article>        
                     @endif

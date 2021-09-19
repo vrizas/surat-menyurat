@@ -19,14 +19,14 @@
                     </td>
                 </tr>
                 @if($confirmDelete == $queue->id)
-                    <div class="confirm confirm-delete">
-                        <p>Apakah Anda yakin dengan menghapus data antrian?</p>
-                        <div>
-                            <button wire:click="showConfirmDelete(0)">Batal</button>
-                            <button class='yes' wire:click="deleteQueue({{$queue->id}})">Hapus</button>
-                        </div>
+                <div class="confirm confirm-delete">
+                    <p>Apakah Anda yakin dengan menghapus data antrian?</p>
+                    <div>
+                        <button wire:click="showConfirmDelete(0)">Batal</button>
+                        <button class='yes' wire:click="deleteQueue({{$queue->id}})">Hapus</button>
                     </div>
-                    @endif
-                @endforeach
+                </div>
+                @endif    
+                @endforeach   
             </table>
 </div>

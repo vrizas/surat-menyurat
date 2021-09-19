@@ -116,7 +116,6 @@ class InputDataKelurahan extends Component
         $rt = RT::find($id);
         $rt->delete();
         $this->confirmDelete = 0;
-        
     }
 
     // RW
