@@ -37,7 +37,7 @@ class AccountSetting extends Component
     }
 
     public function showEditProfile($id) {
-        $nik = User::find($id)->nik;
+        $nik = Auth::user()->nik;
         $user = User::join('admins', 'admins.nik', '=', 'users.nik')
                 ->where('users.nik', '=', $nik)
                 ->first();
@@ -59,7 +59,7 @@ class AccountSetting extends Component
     }
 
     public function updateData($id) {
-        $nik = User::find($id)->nik;
+        $nik = Auth::user()->nik;
         $user = User::find($id);
         $admin = Admin::join('users', 'admins.nik', '=', 'users.nik')
                 ->where('users.nik', '=', $nik)
