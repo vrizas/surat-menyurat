@@ -1,0 +1,475 @@
+header nav {
+    margin-top: 30px;
+}
+
+header.admin {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    padding: 20px 25px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    background-color: var(--color-blue);
+    position: fixed;
+    top: 0;
+    z-index: 101;
+}
+
+header.admin .logo {
+    margin-right: 0;
+}
+
+header.admin .logo h1, header.admin .logo p {
+    color: var(--color-white);
+}
+
+nav {
+    height: 100vh;
+    width: 18%;
+    display: flex;
+    padding: 20px 25px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    margin-top: 70px;
+}
+
+nav button, nav form {
+    width: 100%;
+    height: 100%;
+}
+
+nav button {
+    background-color: transparent;
+    color: var(--color-dark-grey);
+    text-align: left;
+    font-size: 14px;
+}
+
+nav li {
+    list-style-type: none;
+    border-bottom: .5px solid rgba(153, 153, 153, .15);
+    height: 60px;
+}
+
+nav button i {
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+article {
+    width: 82%;
+    margin-left: 18%;
+    margin-top: 70px;
+}
+
+article h3 {
+    width: fit-content;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    font-size: 14px;
+}
+
+td {
+    border-bottom: .5px solid rgba(153, 153, 153, .4);
+}
+
+th {
+    padding: 15px;  
+    text-align: left;
+}
+
+td {
+    padding: 10px 15px;
+}
+
+.data-warga th {
+    padding: 15px 30px;
+}
+
+.data-warga td {
+    padding: 10px 30px;
+}
+
+.data-warga td:nth-child(1) {
+    padding: 10px 15px;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(100, 136, 234, .1);
+}
+
+td button:nth-child(1) {
+    margin-right: 10px;
+}
+
+td button i.bxs-check-circle {
+    font-size: 30px;
+    color: var(--color-blue);
+}
+
+td button i.bxs-trash-alt {
+    font-size: 27px;
+    color: var(--color-red);
+}
+
+td button i.bxs-edit-alt {
+    font-size: 27px;
+    color: var(--color-green);
+}
+
+tr th:nth-child(1), tr td:nth-child(1) {
+    text-align: center;
+}
+
+.home tr td:nth-child(1) {
+    width: 7%;
+}
+
+.home tr td:nth-child(2) {
+    width: 22%;
+}
+
+.home tr td:nth-child(3) {
+    width: 22%;
+}
+
+.home tr td:nth-child(4) {
+    width: 34%;
+}
+
+table button {
+    padding: 0;
+}
+
+.btn-cetak{
+    background-color: var(--color-blue);
+    margin-left: 7px;
+}
+
+.btn-refresh {
+    color: var(--color-dark-grey);
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.btn-refresh img {
+    width: 12px;
+    margin-right: 3px;
+}
+
+.confirm-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm {
+    box-sizing: content-box;
+    width: 400px;
+    padding: 30px;
+    background-color: var(--color-white);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px;
+    position: relative;
+    text-align: center;
+}
+
+.confirm p {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.confirm .warning {
+    text-align: left;
+}
+
+.confirm .action {
+    margin: 20px 0 10px 0;
+}
+
+.confirm button {
+    color: var(--color-white);
+}
+
+.confirm button:nth-child(1) {
+    margin-right: 5px;
+}
+
+.confirm-delete button {
+    background-color: var(--color-blue) !important;
+}
+
+.confirm-delete button:nth-last-child(1) {
+    background-color: var(--color-red) !important;
+}
+
+.confirm-acc p {
+    margin-bottom: 20px;
+}
+
+.confirm-acc label {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.confirm-acc .data-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.confirm-acc button {
+    background-color: var(--color-green);
+}
+
+.confirm-acc button:nth-last-child(1) {
+    background-color: var(--color-blue);
+}
+
+.home, .buku-register, .data-warga {
+    padding: 30px 0;
+}
+
+.home h2 {
+    margin-bottom: 20px;
+    color: var(--color-grey);
+}
+
+.home h3, .home h2, .home .btn-refresh, .buku-register h3, .buku-register .btn-download, .data-warga h3, .data-warga .btn-add {
+    margin-left: 30px;
+}
+
+.profile {
+    padding: 30px 50px;
+}
+
+.profile button {
+    padding: 0;
+    width: fit-content;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+    color: var(--color-grey);
+}
+
+.profile button i.bxs-chevron-left {
+    font-size: 16px;
+}
+
+.profile p {
+    font-size: 14px;
+}
+
+.profile input, .profile textarea, .profile .list p {
+    width: 40%;
+}
+
+.profile section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.main-profile .list p:nth-last-child(1) {
+    margin-top: 5px;
+    padding: 15px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+    border-radius: 5px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+input,  textarea {
+    margin-top: 5px;
+    padding: 15px;
+    border: 1px solid var(--color-grey);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+label {
+    font-size: 14px;
+}
+
+.edit-profile .list input[disabled] {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px;
+    border: none;
+}
+
+.edit-password {
+    background-color: white;
+    width: 40%;
+    padding: 30px 35px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px;
+}
+
+.edit-password input {
+    width: 100%;
+    padding: 10px 15px;
+}
+
+.edit-password h4 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.profile .btn-save {
+    border-radius: 3px;
+    padding: 10px 15px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+}
+
+p.warning {
+    color: var(--color-yellow);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.buku-register button.btn-download, .data-warga .btn-add {
+    border: none;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.data-warga .table-wrapper {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.data-warga button.tambah-data {
+    margin: 20px 0 0 50px;
+}
+
+.data-warga .input-data-warga {
+    display: inherit;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99999;
+    background-color: rgba(0,0,0,.3);
+}
+
+.data-warga .form input {
+    background-color: var(--color-white) !important;
+    border: 1px solid var(--color-dark-grey) !important;
+    border-radius: 3px !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.data-warga .form input:focus, .data-warga .form textarea:focus {
+    border: 1px solid var(--color-dark-grey) !important;
+}
+
+.data-warga textarea, .data-warga select {
+    background-color: var(--color-white);
+    border-color: var(--color-dark-grey);
+}
+
+
+.data-warga .form-container {
+    background-color: var(--color-white);
+    width: 60%;
+    height: 95vh;
+    margin: 15px auto 0;
+    border-radius: 5px;
+    position: relative;
+    padding: 30px 50px;
+}
+
+.data-warga .form {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    height: 90%;
+    margin-bottom: 20px;
+}
+
+.data-warga .form div {
+    width: 40%;
+}
+
+.data-warga input, .data-warga textarea, .data-warga select {
+    padding: 10px 15px;
+    width: 100%;
+    display: block;
+    margin-top: 3px;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+}
+
+.data-warga label {
+    font-size: 12px;
+}
+
+.data-warga .buttons {
+    text-align: center;
+}
+
+.data-warga .buttons button {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+}
+
+.data-warga .buttons button:nth-child(1) {
+    margin-right: 10px;
+}
+
+.data-warga .confirm-delete p {
+    margin-bottom: 20px;
+}
+
+.flashMessage {
+    color: var(--color-red);
+}

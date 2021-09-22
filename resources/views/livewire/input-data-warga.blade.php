@@ -1,7 +1,7 @@
 <div>
-    <button class='tambah-data' wire:click="showForm(1)">Tambah Data</button>
+    <button class='btn-add' wire:click="showForm(1)">Tambah Data</button>
     @if($showForm == 1)
-    <article class='input-data-warga'>
+    <section class='input-data-warga'>
         <div class="form-container">
             <form class='form' autocomplete='off'>
                 <h4 class='flashMessage'>{{$flashMessage}}</h4>
@@ -64,7 +64,7 @@
                     <select wire:model="rt" id="rt" name="rt">
                         <option hidden>Pilih Salah Satu</option>
                         @foreach($r_t_s as $rt)
-                        <option value="{{$rt->nomorRt}}">{{$rt->nomorRt}}</option>
+                        <option value="{{$rt->rt}}">{{$rt->rt}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -73,29 +73,20 @@
                     <select wire:model="rw" id="rw" name="rw">
                         <option hidden>Pilih Salah Satu</option>
                         @foreach($r_w_s as $rw)
-                        <option value="{{$rw->nomorRw}}">{{$rw->nomorRw}}</option>
+                        <option value="{{$rw->rw}}">{{$rw->rw}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div>
                     <label for="alamat">Alamat</label>
-                    <textarea wire:model="alamat" name="alamat" id="alamat" cols="30" rows="10"></textarea>
+                    <textarea wire:model="alamat" name="alamat" id="alamat" cols="30" rows="2"></textarea>
                 </div> 
-                <div class="buttons">
-                    <button wire:click="showForm(0)" class='back' onclick="event.preventDefault()">Batal</button>
-                    <button wire:click="showConfirm(1)" class='next' onclick="event.preventDefault()">Simpan</button>
-                    @if($confirm == 1)
-                    <div class="confirm">
-                        <p>Apakah Anda yakin dengan data yang telah Anda masukkan?</p>
-                        <div>
-                            <button wire:click="showConfirm(0)" onclick="event.preventDefault()">Batal</button>
-                            <button class='yes' wire:click="createData" onclick="event.preventDefault()">Simpan</button>
-                        </div>
-                    </div>
-                    @endif
-                </div>
             </form>
+            <div class="buttons">
+                <button wire:click="showForm(0)" class='back' onclick="event.preventDefault()">Batal</button>
+                <button wire:click="createData" class='next' onclick="event.preventDefault()">Simpan</button>
+            </div>
         </div>            
-    </article>        
+    </section>        
     @endif              
 </div>

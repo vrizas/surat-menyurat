@@ -6,20 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Menyurat</title>
     <link rel="stylesheet" href="{{ asset('css/cetak.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
-    <link rel="stylesheet" href="dist/paper.css">
-    <style>@page { size: A4 }</style>
 </head>
-<body class='A4'>
-    <section class="sheet padding-10mm">
+<body>
+    <section>
         <header>
-            <h1>RUKUN TETANGGA {{$member->rt}} RUKUN WARGA {{$noRw}}</h1>
-            <h1>KELURAHAN LOWOKWARU KECAMATAN LOWOKWARU</h1>
+            <h1 class="mb-1">RUKUN TETANGGA {{$member->rt}} RUKUN WARGA {{$noRw}}</h1>
+            <h1 class="mb-1">KELURAHAN LOWOKWARU KECAMATAN LOWOKWARU</h1>
             <h1>KOTA MALANG</h1>
         </header>
         <main>
             <article class="pembuka">
-                <p>Malang, {{$today}}</p>
+                <p>Malang, .......</p>
                 <p>Kepada:</p>
                 <p>Yth. Sdr.</p>
                 <p>Lurah Lowokwaru</p>
@@ -30,8 +27,8 @@
             <article class="isi">
                 <section>
                     <h1>SURAT PENGANTAR</h1>
-                    <p class="nomor-surat">Nomor: {{$report->no}} / {{$member->rt}}-{{$noRw}} / {{$rmwMonth}} {{$year}}</p>
-                    <p class="indent">Yang bertanda tangan di bawah ini Ketua RT {{$member->rt}} RW {{$member->rw}} Kelurahan Lowokwaru Kecamatan Lowokwaru Kota Malang. Dengan ini menerangkan bahwa:</p>
+                    <p class="nomor-surat">Nomor: ..... / {{$member->rt}}-{{$noRw}} / {{$rmwMonth}} {{$year}}</p>
+                    <p class="indent">Yang bertanda tangan di bawah ini Ketua RT {{$member->rt}} RW {{$noRw}} Kelurahan Lowokwaru Kecamatan Lowokwaru Kota Malang. Dengan ini menerangkan bahwa:</p>
                     <table class="data-warga">
                         <tr>
                             <td>Nama</td>
@@ -95,7 +92,7 @@
                         </tr><tr>
                             <td>Keperluan</td>
                             <td>:</td>
-                            <td>{{$report->keperluan}}</td>
+                            <td>{{$confirm->keperluan}}</td>
                         </tr>
                     </table>
                     <p class="indent">Demikian untuk menjadikan periksa dan dipergunakan sebagaimana mestinya.</p>
@@ -103,34 +100,50 @@
                         <tr>
                             <td>Nomor</td>
                             <td>:</td>
-                            <td>{{$report->no}}</td>
+                            <td>.....</td>
                         </tr>
                         <tr>
                             <td>Tanggal</td>
                             <td>:</td>
-                            <td>{{$report->tanggal}}</td>
+                            <td>.....</td>
                         </tr>
                     </table>
                 </section>
                 <section class="mengetahui">
-                    <div class="rw">
+                    <table>
+                        <tr>
+                            <td class="w-25">Mengetahui,</td>
+                            <td class="w-40"></td>
+                            <td class="w-25"></td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">KETUA RW {{$noRw}}</td>
+                            <td class="w-40"></td>
+                            <td class="w-25">KETUA RT {{$member->rt}} RW {{$noRw}}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">KELURAHAN LOWOKWARU</td>
+                            <td class="w-40"></td>
+                            <td class="w-25">KELURAHAN LOWOKWARU</td>
+                        </tr>
+                        <tr>
+                            <td class="tanda-tangan w-25"></td>
+                            <td class="w-40"></td>
+                            <td class="tanda-tangan w-25"></td>
+                        </tr>
+                    </table>
+                    <!-- <div class="rw">
                         <p>Mengetahui,</p>
                         <p>KETUA RW {{$noRw}}</p>
                         <p>KELURAHAN LOWOKWARU</p>
-                        <div class="tanda-tangan">
-                            <img src="{{asset('public')}}/{{$rw->tandaTangan}}"></img>
-                        </div>
-                        <p class="nama">{{$rw->nama}}</p>
+                        <div class="tanda-tangan"></div>
                     </div>
                     <div class="rt">
                         <p style="visibility:hidden;">Mengetahui,</p>
                         <p>KETUA RT {{$member->rt}} RW {{$noRw}}</p>
                         <p>KELURAHAN LOWOKWARU</p>
-                        <div class="tanda-tangan">
-                            <img src="{{asset('public')}}/{{$rt->tandaTangan}}"></img>
-                        </div>
-                        <p class="nama">{{$rt->nama}}</p>
-                    </div>
+                        <div class="tanda-tangan"></div>
+                    </div> -->
                 </section>
             </article>
         </main>

@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => 'http://localhost/surat-menyurat',
+    'asset_url' => 'http://localhost/surat-menyurat/public',
 
     /*
     |--------------------------------------------------------------------------

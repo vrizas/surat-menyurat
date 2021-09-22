@@ -30,7 +30,6 @@ class Warga extends Migration
             $table->string('rw');
             $table->string('alamat');
             $table->timestamps();
-
         });
     }
 

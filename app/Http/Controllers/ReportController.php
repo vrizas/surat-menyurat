@@ -13,7 +13,7 @@ class ReportController extends Controller
     public function render()
     {   
         $reports = DB::table('reports')
-                    ->join('members', 'reports.nik', '=', 'members.nik')
+                    ->join('members', 'reports.member_nik', '=', 'members.nik')
                     ->select('reports.id','reports.no','reports.noRegisterRw','members.nama','reports.tanggal','reports.keperluan')
                     ->get();
         

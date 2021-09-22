@@ -7,25 +7,37 @@
     <title>Surat Menyurat</title>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/create-surat.css') }}">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     @livewireStyles
 </head>
 <body>
-    <header class='header'>
+    <header>
         <a href="{{ url('/') }}" class="logo">
-            <img src="{{ asset('img/logo-malang.png') }}" alt="Logo Malang">
+            <img src="">
             <div class='text'>
                 <h1>Surat Menyurat</h1>
                 <p>Kelurahan Lowokwaru</p>
             </div>
         </a>
+        <nav>
+            <ul>
+                <li><a href="" class="user">Admin <i class='bx bxs-chevron-down' ></i></a></li>
+            </ul>
+            <form method="POST" action="{{ route('logout') }}" class="drop-down-content">
+                @csrf
+                <div class="options">
+                    <button class="btn-logout"><i class='bx bx-log-out' ></i> Keluar</button>
+                </div>
+            </form>
+        </nav>
     </header>
     <main>
         <nav>
             <ul>
                 <li class="active">Pilih Surat</li>
-                <li><img src="{{asset('img/arrow.svg')}}"></li>
-                <li >Input Data</li>
-                <li><img src="{{asset('img/arrow.svg')}}"></li>
+                <li><i class='bx bxs-chevrons-right'></i></li>
+                <li>Input Data</li>
+                <li><i class='bx bxs-chevrons-right'></i></li>
                 <li>Cetak Surat</li>
             </ul>
         </nav>
@@ -33,12 +45,15 @@
             <button id='surat-pengantar-button'>Surat Pengantar</button>
         </article>
         <article class="input-data-warga">  
-            <h2>Surat Pengantar</h2>
+            <h3>Surat Pengantar</h3>
             <livewire:cetak-surat-pengantar/>
         </article>
     </main>
-
+    <footer>
+        &copy; 2021 Surat Menyurat Kelurahan Lowokwaru Kota Malang
+    </footer>
     <script src="{{ asset('js/create-surat.js') }}"></script>
+    <script src="{{ asset('js/user-option.js') }}"></script>
     @livewireScripts
 </body>
 </html>

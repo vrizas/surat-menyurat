@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Member;
 use App\Models\Report;
+use App\Models\User;
 use Livewire\Component;
 use DB;
 use Carbon\Carbon;
@@ -38,43 +39,21 @@ class InputDataWarga extends Component
 
     public function render()
     {
-        $r_t_s = DB::table('r_t_s')->orderBy('nomorRt', 'ASC')->get();
-        $r_w_s = DB::table('r_w_s')->orderBy('nomorRw', 'ASC')->get();
+        $r_t_s = User::join('admins', 'admins.nik', '=', 'users.nik')
+                ->orderBy('admins.rt', 'ASC')
+                ->select('admins.rt')
+                ->get();
+
+        $r_w_s = User::join('admins', 'admins.nik', '=', 'users.nik')
+                ->orderBy('admins.rw', 'ASC')
+                ->select('admins.rw')
+                ->get();
         return view('livewire.input-data-warga')->with('flashMessage', $this->flashMessage)->with('r_t_s',$r_t_s)->with('r_w_s',$r_w_s);
     }
 
     public function showForm($on) {
         $this->showForm = $on;
         $this->emit('Show');
-    }
-
-    public function showConfirm($on) {
-        if($on == 1) {
-            if($this->nik == '' ||
-                $this->nama == '' ||
-                $this->jenisKelamin == '' ||
-                $this->tempat == '' ||
-                $this->tanggal == '' ||
-                $this->agama == '' ||
-                $this->status == '' ||
-                $this->pendidikan == '' ||
-                $this->negara == '' ||
-                $this->pekerjaan == '' ||
-                $this->noKk == '' ||
-                $this->rt == '' ||
-                $this->rw == '' ||
-                $this->alamat == '') {
-                    $this->flashMessage = 'Isi semua data!';
-            } else {
-                $this->flashMessage = '';
-                $this->confirm = $on;
-                $this->emit('Show');
-            }
-            $this->emit('Show');
-        } else {
-            $this->confirm = $on;
-            $this->emit('Show');
-        }
     }
 
     public function createData()
@@ -97,6 +76,27 @@ class InputDataWarga extends Component
             'rw' => 'required',
             'alamat' => 'required',
         ]);
+
+        if($this->nik == '' ||
+            $this->nama == '' ||
+            $this->jenisKelamin == '' ||
+            $this->tempat == '' ||
+            $this->tanggal == '' ||
+            $this->agama == '' ||
+            $this->status == '' ||
+            $this->pendidikan == '' ||
+            $this->negara == '' ||
+            $this->pekerjaan == '' ||
+            $this->noKk == '' ||
+            $this->rt == '' ||
+            $this->rw == '' ||
+            $this->alamat == '') {
+            $this->flashMessage = 'Isi semua data!';
+        } else {
+            $this->flashMessage = '';
+            $this->confirm = 0;
+            $this->emit('Show');
+        }
 
         if(!$member) {
             Member::create([

@@ -6,14 +6,44 @@ use Illuminate\Http\Request;
 use PDF;
 use App\Models\Member;
 use App\Models\Report;
-use App\Models\RT;
-use App\Models\RW;
+use App\Models\Confirm;
 use Carbon\Carbon;
 use DB;
 
 class PDFController extends Controller
 {
     public function cetakSurat($nik) {
+        $member = Member::where('nik', $nik)->first();
+        $confirm = Confirm::where('member_nik', $nik)->latest()->first();
+        $data = $this->getData($nik);
+
+        $pdf = PDF::loadView('cetak', $data)->setPaper('a4', 'potrait');
+        return $pdf->stream($confirm->jenisSurat.'_'.$member->nama.'.pdf');
+    }
+
+    public function downloadSurat($nik) {
+        $member = Member::where('nik', $nik)->first();
+        $confirm = Confirm::where('member_nik', $nik)->latest()->first();
+        $data = $this->getData($nik);
+        
+        $pdf = PDF::loadView('cetak', $data)->setPaper('a4', 'potrait');
+        return $pdf->download($confirm->jenisSurat.'_'.$member->nama.'.pdf');
+    }
+
+    public function downloadBukuRegister() {
+        $reports = DB::table('reports')
+                    ->join('members', 'reports.member_nik', '=', 'members.nik')
+                    ->select('reports.id','reports.no','reports.noRegister','members.nama','reports.tanggal','reports.keperluan')
+                    ->get();
+        $data = [
+            'reports' => $reports,
+        ];
+
+        $pdf = PDF::loadView('download-buku-register', $data)->setPaper('a4', 'potrait');;
+        return $pdf->download('buku-register.pdf');
+    }
+
+    public function getData($nik) {
         setlocale(LC_TIME, 'id_ID');
         \Carbon\Carbon::setLocale('id');
         \Carbon\Carbon::now()->formatLocalized("%A, %d %B %Y");
@@ -22,37 +52,22 @@ class PDFController extends Controller
         $tanggalLahir = Member::select('tanggalLahir')->where('nik', $nik)->first()->tanggalLahir;
         $tempatLahir = Member::select('tempatLahir')->where('nik', $nik)->first()->tempatLahir;
         $ttl = $tempatLahir . ', ' . Carbon::parse($tanggalLahir)->isoFormat('D MMMM Y');
-        $report = Report::where('nik', $nik)->latest()->first();
-        $rt = RT::where('nomorRt', $member->rt)->first();
-        $rw = RW::where('nomorRw', $member->rw)->first();
+        $confirm = Confirm::where('member_nik', $nik)->latest()->first();
+
         $today = Carbon::now()->isoFormat('D MMMM Y');
         $year = Carbon::now()->isoFormat('Y');
         $month = Carbon::now()->isoFormat('M');
         
-        // $pdf = PDF::loadView('cetak', $member)->setPaper('a4', 'potrait');;
-        // return $pdf->stream('surat.pdf');
-        return view('cetak')->with('member', $member)
-                            ->with('ttl', $ttl)
-                            ->with('report', $report)
-                            ->with('today', $today)
-                            ->with('year', $year)
-                            ->with('rmwMonth', changeToRomawi($month))
-                            ->with('rt', $rt)
-                            ->with('rw', $rw)
-                            ->with('noRw', changeToRomawi($rw->nomorRw));
-    }
-
-    public function downloadBukuRegister() {
-        $reports = DB::table('reports')
-                    ->join('members', 'reports.nik', '=', 'members.nik')
-                    ->select('reports.id','reports.no','reports.noRegisterRw','members.nama','reports.tanggal','reports.keperluan')
-                    ->get();
         $data = [
-            'reports' => $reports,
+            'member' => $member,
+            'ttl' => $ttl,
+            'confirm' => $confirm,
+            'today' => $today,
+            'year' => $year,
+            'rmwMonth' => changeToRomawi($month),
+            'noRw' => changeToRomawi($member->rw),
         ];
-
-        $pdf = PDF::loadView('download-buku-register', $data)->setPaper('a4', 'potrait');;
-        return $pdf->download('buku-register.pdf');
+        return $data;
     }
 }
 

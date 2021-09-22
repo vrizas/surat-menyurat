@@ -3,10 +3,10 @@
 namespace App\Http\Livewire;
 
 use App\Models\Member;
-use App\Models\Queue;
+use App\Models\Confirm;
+use App\Models\Report;
+use App\Models\User;
 use Livewire\Component;
-use DB;
-use Carbon\Carbon;
 use SheetDB\SheetDB;
 use Redirect;
 
@@ -29,7 +29,9 @@ class CetakSuratPengantar extends Component
     public $rt;
     public $rw;
     public $alamat;
+    public $tujuan;  
     public $keperluan;  
+    public $keterangan = '';  
 
     protected $listeners = [
         'Cetak' => '$refresh'
@@ -37,11 +39,17 @@ class CetakSuratPengantar extends Component
 
     public function render()
     {
-        $r_t_s = DB::table('r_t_s')->orderBy('nomorRt', 'ASC')->get();
-        $r_w_s = DB::table('r_w_s')->orderBy('nomorRw', 'ASC')->get();
-        
+        $r_t_s = User::join('admins', 'admins.nik', '=', 'users.nik')
+                ->orderBy('admins.rt', 'ASC')
+                ->select('admins.rt')
+                ->get();
+
+        $r_w_s = User::join('admins', 'admins.nik', '=', 'users.nik')
+                ->orderBy('admins.rw', 'ASC')
+                ->select('admins.rw')
+                ->get();
                     
-        return view('livewire.cetak-surat-pengantar')->with('flashMessage', $this->flashMessage)->with('r_t_s',$r_t_s)->with('r_w_s',$r_w_s);
+        return view('livewire.cetak-surat-pengantar')->with('flashMessage', $this->flashMessage)->with('r_t_s', $r_t_s)->with('r_w_s', $r_w_s);
     }
 
     public function updatedNik() {
@@ -79,6 +87,7 @@ class CetakSuratPengantar extends Component
                 $this->rt == '' ||
                 $this->rw == '' ||
                 $this->alamat == '' ||
+                $this->tujuan == '' ||
                 $this->keperluan == '') {
                     $this->flashMessage = 'Isi semua data!';
             } else {
@@ -88,12 +97,24 @@ class CetakSuratPengantar extends Component
             $this->emit('Cetak');
         } else {
             $this->confirm = $on;
-            $this->emit('Cetak');
+            $this->emit('Cetak');   
         }
+    }
+
+    public function downloadSurat() {
+        $this->createData();
+        $this->confirm = 0;
+        return redirect()->to('download/surat/'.$this->nik);
     }
 
     public function cetakSurat()
     {
+        $this->createData();
+        $this->confirm = 0;
+        return redirect()->to('cetak/'.$this->nik);
+    }
+
+    public function createData() {
         $member = Member::where('nik', $this->nik)->first();
 
         $dataValid = $this->validate([
@@ -111,6 +132,7 @@ class CetakSuratPengantar extends Component
             'rt' => 'required',
             'rw' => 'required',
             'alamat' => 'required',
+            'tujuan' => 'required',
             'keperluan' => 'required',
         ]);
 
@@ -148,27 +170,41 @@ class CetakSuratPengantar extends Component
             $member->save();
         }
 
-        Queue::create([
-            'nik' => $this->nik,
-            'keperluan' => $this->keperluan,
-        ]);
+        $adminRt = User::join('admins', 'admins.nik', '=', 'users.nik')
+                ->where([
+                    ['admins.jabatan', '=', 'RT'],
+                    ['admins.rt', '=', $this->rt],
+                    ['admins.rw', '=', $this->rw],
+                ])
+                ->select('admins.nik')
+                ->first();
         
-        $this->nik = '';
-        $this->nama = '';
-        $this->jenisKelamin = '';
-        $this->tempat = '';
-        $this->tanggal = '';
-        $this->agama = '';
-        $this->status = '';
-        $this->negara = '';
-        $this->pendidikan = '';
-        $this->pekerjaan = '';
-        $this->noKk = '';
-        $this->rt = '';
-        $this->rw = '';
-        $this->alamat = '';
-        $this->keperluan = '';
-        $this->confirm = 0;
+        $adminRw = User::join('admins', 'admins.nik', '=', 'users.nik')
+                ->where([
+                    ['admins.jabatan', '=', 'RW'],
+                    ['admins.rt', '=', $this->rt],
+                    ['admins.rw', '=', $this->rw],
+                ])
+                ->select('admins.nik')
+                ->first();            
+
+        Confirm::create([
+            'member_nik' => $this->nik,
+            'tujuan' => $this->tujuan,
+            'keperluan' => $this->keperluan,
+            'keterangan' => $this->keterangan,
+            'jenisSurat' => 'Surat Pengantar',
+            'admin_nik' => $adminRt->nik,
+        ]);
+
+        Confirm::create([
+            'member_nik' => $this->nik,
+            'tujuan' => $this->tujuan,
+            'keperluan' => $this->keperluan,
+            'keterangan' => $this->keterangan,
+            'jenisSurat' => 'Surat Pengantar',
+            'admin_nik' => $adminRw->nik,
+        ]);
     }
     
 }

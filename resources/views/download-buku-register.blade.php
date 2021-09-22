@@ -20,7 +20,7 @@
         @foreach($reports as $report)
         <tr>
             <td>{{$report->no}}</td>
-            <td>{{$report->noRegisterRw}}</td>
+            <td>{{$report->noRegister}}</td>
             <td>{{$report->nama}}</td>
             <td>{{$report->tanggal}}</td>
             <td>{{$report->keperluan}}</td>
