@@ -22,7 +22,13 @@
         </a>
         <nav>
             <ul>
-                <li><a href="" class="user">Admin <i class='bx bxs-chevron-down' ></i></a></li>
+                <li>
+                     @if(strlen(Auth::user()->name)>7)
+                    <a href="" class="user"><i class='bx bxs-user-circle'></i> {{ substr(strip_tags(Auth::user()->name),0,7) }} <i class='bx bxs-chevron-down' ></i></a>
+                    @else
+                    <a href="" class="user"><i class='bx bxs-user-circle'></i> {{ Auth::user()->name }} <i class='bx bxs-chevron-down' ></i></a>
+                    @endif
+                </li>
             </ul>
             <form method="POST" action="{{ route('logout') }}" class="drop-down-content">
                 @csrf
