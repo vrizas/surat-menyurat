@@ -1,4 +1,10 @@
 <div wire:poll.visible>
+                    @if(session()->has('message') && $flashMessage == 1)
+                    <article id="flashMessage" class="pop-up">
+                        <i wire:click="removeFlashMessage" class='bx bx-x'></i>
+                        <h5>{{session('message')}}</h5>
+                    </article>
+                    @endif
                     <button wire:click="refreshComponent" class="btn-refresh"><img src="{{asset('img/arrow-clockwise.svg')}}">Perbarui</button>
                     <table>
                         <tr>
@@ -63,6 +69,14 @@
                     </table>
 
                     <script>
+                        document.addEventListener("DOMContentLoaded", () => { 
+                            window.livewire.on('removeFlashMessage',()=>{
+                                setTimeout(() => { 
+                                    document.querySelector('#flashMessage').remove();
+                                }, 5000);
+                            });
+                        });
+
                         document.querySelectorAll('.bxs-check-circle').forEach(element => {
                             element.addEventListener('mouseover', (event) => {
                                 event.target.classList.add('bx-tada');

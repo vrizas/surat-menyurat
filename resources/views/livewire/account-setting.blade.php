@@ -1,7 +1,13 @@
 <div>
+                    @if(session()->has('message') && $flashMessage == 1)
+                    <article id="flashMessage" class="pop-up">
+                        <i wire:click="removeFlashMessage" class='bx bx-x'></i>
+                        <h5>{{session('message')}}</h5>
+                    </article>
+                    @endif
                     @if($editProfile == 0)
                     <section class="main-profile">
-                        <button wire:click="showEditProfile({{$user->id}})"><i class="bi bi-pencil-square"></i> Edit</button>
+                        <button class="btn-edit" wire:click="showEditProfile({{$user->id}})"><i class="bi bi-pencil-square"></i> Edit</button>
                         <div class="list">
                             <p>Email</p>
                             <p>{{$user->email}}</p>
@@ -86,4 +92,13 @@
                         </div>
                         <button class="btn-save" wire:click="updatePassword({{$user->id}})">Simpan</button>
                     </section>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => { 
+                            window.livewire.on('removeFlashMessage',()=>{
+                                setTimeout(() => { 
+                                    document.querySelector('#flashMessage').remove();
+                                }, 5000);
+                            });
+                        });
+                    </script>
 </div>

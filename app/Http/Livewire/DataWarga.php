@@ -40,11 +40,13 @@ class DataWarga extends Component
         
         $members = DB::table('members')->orderBy('nik', 'ASC')->get();
         $r_t_s = User::join('admins', 'admins.nik', '=', 'users.nik')
+                ->where('admins.jabatan', '=', 'RT')
                 ->orderBy('admins.rt', 'ASC')
                 ->select('admins.rt')
                 ->get();
 
         $r_w_s = User::join('admins', 'admins.nik', '=', 'users.nik')
+                ->where('admins.jabatan', '=', 'RW')
                 ->orderBy('admins.rw', 'ASC')
                 ->select('admins.rw')
                 ->get();

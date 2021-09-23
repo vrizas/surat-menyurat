@@ -1,6 +1,11 @@
 <div>
+            @if(session()->has('message') && $flashMessage == 1)
+            <article id="flashMessage" class="pop-up">
+                <i wire:click="removeFlashMessage" class='bx bx-x'></i>
+                <h5>{{session('message')}}</h5>
+            </article>
+            @endif
             <form class='form' autocomplete='off'>
-                <h4 class='flashMessage'>{{$flashMessage}}</h4>
                 <div>
                     <label for="nik">NIK <span class="red">*</span></label>
                     <input wire:model.lazy="nik" type="number" id="nik" name="nik" autocomplete="off" required>
@@ -116,21 +121,31 @@
                 </div>
             </form>
             <div class="buttons">
-                    <button class='back'>Kembali</button>
-                    <button class='next' wire:click="showConfirm(1)">Cetak Surat</button>
-                    @if($confirm == 1)
-                    <section class="confirm-wrapper">
-                        <article class="confirm">
-                            <i wire:click="showConfirm(0)" class='bx bx-x'></i>
-                            <i class='bx bxs-check-circle'></i>
-                            <h4>Pilih metode cetak surat</h4>
-                            <div class="action">
-                                <button wire:click="downloadSurat"><i class='bx bxs-download'></i>Download PDF</button>
-                                <button class='yes' wire:click="cetakSurat"><i class='bx bxs-printer'></i>Cetak Surat</button>
-                            </div>
-                            <p>NB: Pilih Cetak Surat apabila anda ingin langsung melakukan pencetakan</p>
-                        </article>
-                    </section>
-                    @endif
-                </div> 
+                <button class='back'>Kembali</button>
+                <button class='next' wire:click="showConfirm(1)">Cetak Surat</button>
+                @if($confirm == 1)
+                <section class="confirm-wrapper">
+                    <article class="confirm">
+                        <i wire:click="showConfirm(0)" class='bx bx-x'></i>
+                        <i class='bx bxs-check-circle'></i>
+                        <h4>Pilih metode cetak surat</h4>
+                        <div class="action">
+                            <button wire:click="downloadSurat"><i class='bx bxs-download'></i>Download PDF</button>
+                            <button class='yes' wire:click="cetakSurat"><i class='bx bxs-printer'></i>Cetak Surat</button>
+                        </div>
+                        <p>NB: Pilih Cetak Surat apabila anda ingin langsung melakukan pencetakan</p>
+                    </article>
+                </section>
+                @endif
+            </div> 
+
+            <script>
+                document.addEventListener("DOMContentLoaded", () => { 
+                    window.livewire.on('removeFlashMessage',()=>{
+                        setTimeout(() => { 
+                            document.querySelector('#flashMessage').remove();
+                        }, 5000);
+                    });
+                });
+            </script>
 </div>

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class AccountSetting extends Component
 {
     public $editProfile = 0;
+    public $flashMessage = 0;
     public $email;
     public $name;
     public $nik;
@@ -58,6 +59,10 @@ class AccountSetting extends Component
         $this->editProfile = 0;
     }
 
+    public function removeFlashMessage() {
+        $this->emit('removeFlashMessage');
+    }
+
     public function updateData($id) {
         $nik = Auth::user()->nik;
         $user = User::find($id);
@@ -77,7 +82,10 @@ class AccountSetting extends Component
         $admin->save();
 
         $this->editProfile = 0;
-        $this->emit('refreshData');
+
+        session()->flash('message', 'Data Berhasil di Simpan');
+        $this->flashMessage = 1;
+        $this->emit('removeFlashMessage');
     }
 
     public function updatePassword($id) {
@@ -87,6 +95,10 @@ class AccountSetting extends Component
             $user->save();
             $this->password = '';
             $this->confirmPassword = '';
+
+            session()->flash('message', 'Data Berhasil di Simpan');
+            $this->flashMessage = 1;
+            $this->emit('removeFlashMessage'); 
         }
     }
 }

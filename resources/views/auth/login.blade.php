@@ -1,9 +1,10 @@
-<title>Surat Menyurat</title>
+<title>Butuh Surat</title>
+<link rel="icon" href="{{ asset('favicon.ico') }}">
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="{{ url('/') }}">
-                <img src="" class="w-20 h-20 fill-current text-gray-500" />
+                <img src="{{asset('img/logo.svg')}}" alt="Logo Butuh Surat" class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
 

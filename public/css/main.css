@@ -38,21 +38,20 @@ button {
 .logo {
     display: flex;
     align-items: center;
-    margin-right: 40px;
 }
 
 .logo img {
-    width: 40px;
+    width: 45px;
 }
 
 .logo h1 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: var(--color-dark-grey);
 }
 
 header p {
-    font-size: 14px;
+    font-size: 12px;
     color: var(--color-dark-grey);
 }
 
@@ -70,4 +69,12 @@ nav ul {
 
 nav li {
     list-style-type: none;
+}
+
+footer {
+    background-color: var(--color-blue);
+    text-align: center;
+    color: var(--color-white);
+    font-size: 13px;
+    padding: 25px;
 }

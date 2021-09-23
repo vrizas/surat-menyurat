@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ConfirmList extends Component
 {
+    public $flashMessage = 0;
     public $confirmDelete = 0;
     public $confirmButton = 0;
     public $noRegister;
@@ -50,6 +51,10 @@ class ConfirmList extends Component
         $this->confirmButton = 0;
     }
 
+    public function removeFlashMessage() {
+        $this->emit('removeFlashMessage');
+    }
+
     public function deleteConfirm($id) {
         $confirm = Confirm::find($id);
         $confirm->delete();
@@ -82,6 +87,9 @@ class ConfirmList extends Component
         // ]);
 
         $confirm->delete();  
-        $this->emit('showData');
+
+        session()->flash('message', 'Data Berhasil Dikonfirmasi');
+        $this->flashMessage = 1;
+        $this->emit('removeFlashMessage');
     }
 }

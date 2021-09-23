@@ -1,10 +1,10 @@
 <div>
             <header class='admin'>
                 <a href="{{ url('/') }}" class="logo">
-                    <img src="">
+                    <img src="{{asset('img/logo.svg')}}" alt="Logo Butuh Surat">
                     <div class='text'>
-                        <h1>Surat Menyurat</h1>
-                        <p>Kelurahan Lowokwaru</p>
+                        <h1>Butuh Surat</h1>
+                        <p>Surat Menyurat Kelurahan Lowokwaru</p>
                     </div>
                 </a>
             </header>
@@ -17,7 +17,7 @@
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button><i class='bx bx-log-out'></i>Keluar</button>
+                            <button class="btn-logout"><i class='bx bx-log-out'></i>Keluar</button>
                         </form>
                     </li>
                 </ul>       
@@ -31,7 +31,11 @@
                 </article>
                 @elseif($buttonDataWarga == 1)
                 <article class="data-warga">
+                    @if($user->jabatan == 'RT')
                     <h3>Data Warga RT {{$user->rt}} RW {{$user->rw}}</h3>
+                    @elseif($user->jabatan == 'RW')
+                    <h3>Data Warga RW {{$user->rw}}</h3>
+                    @endif
                     <livewire:input-data-warga>
                     <livewire:data-warga />
                 </article>

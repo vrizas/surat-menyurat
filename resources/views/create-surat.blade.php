@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Menyurat</title>
+    <title>Butuh Surat</title>
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/create-surat.css') }}">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -13,10 +14,10 @@
 <body>
     <header>
         <a href="{{ url('/') }}" class="logo">
-            <img src="">
+            <img src="{{asset('img/logo.svg')}}" alt="Logo Butuh Surat">
             <div class='text'>
-                <h1>Surat Menyurat</h1>
-                <p>Kelurahan Lowokwaru</p>
+                <h1>Butuh Surat</h1>
+                <p>Surat Menyurat Kelurahan Lowokwaru</p>
             </div>
         </a>
         <nav>
@@ -50,7 +51,7 @@
         </article>
     </main>
     <footer>
-        &copy; 2021 Surat Menyurat Kelurahan Lowokwaru Kota Malang
+        &copy; 2021, Butuh Surat.
     </footer>
     <script src="{{ asset('js/create-surat.js') }}"></script>
     <script src="{{ asset('js/user-option.js') }}"></script>

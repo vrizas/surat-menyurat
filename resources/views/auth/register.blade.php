@@ -1,8 +1,10 @@
+<title>Butuh Surat</title>
+<link rel="icon" href="{{ asset('favicon.ico') }}">
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            <a href="{{ url('/') }}">
+                <img src="{{asset('img/logo.svg')}}" alt="Logo Butuh Surat" class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
 
@@ -50,7 +52,7 @@
                     {{ __('Sudah memiliki akun?') }}
                 </a>
 
-                <x-button class="ml-4">
+                <x-button class="ml-4" style="background-color: #1976d2;">
                     {{ __('Daftar') }}
                 </x-button>
             </div>

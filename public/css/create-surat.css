@@ -261,18 +261,37 @@ button.next {
     background-color: var(--color-blue);
 }
 
-.flashMessage {
-    color: var(--color-red);
-    margin-bottom: -5px;
-    margin-top: -5px;
+#flashMessage {
+    position: fixed;
+    top: 75px;
+    right: 20px;
+    background-color: var(--color-red );
+    color: whitesmoke;
+    border-radius: 3px;
+    padding: 15px 25px;
+    transform: translateX(400px);
 }
 
-footer {
-    background-color: var(--color-blue);
-    text-align: center;
-    color: var(--color-white);
-    font-size: 13px;
-    padding: 25px;
+#flashMessage i {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.pop-up {
+    animation: popUp 5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes popUp {
+    10% {transform: translateX(0);}
+    30% {transform: translateX(0);}
+    70% {transform: translateX(2px);}
+    80% {transform: translateX(0px);}
+    85% {transform: translateX(5px);}
+    100% {transform: translateX(400px);}
 }
 
 @media screen and (max-width: 575px) {

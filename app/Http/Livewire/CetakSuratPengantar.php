@@ -13,7 +13,7 @@ use Redirect;
 class CetakSuratPengantar extends Component
 {
     public $confirm = 0;
-    public $flashMessage;
+    public $flashMessage = 0;
 
     public $nik;
     public $nama;
@@ -40,16 +40,18 @@ class CetakSuratPengantar extends Component
     public function render()
     {
         $r_t_s = User::join('admins', 'admins.nik', '=', 'users.nik')
+                ->where('admins.jabatan', '=', 'RT')
                 ->orderBy('admins.rt', 'ASC')
                 ->select('admins.rt')
                 ->get();
 
         $r_w_s = User::join('admins', 'admins.nik', '=', 'users.nik')
+                ->where('admins.jabatan', '=', 'RW')
                 ->orderBy('admins.rw', 'ASC')
                 ->select('admins.rw')
                 ->get();
                     
-        return view('livewire.cetak-surat-pengantar')->with('flashMessage', $this->flashMessage)->with('r_t_s', $r_t_s)->with('r_w_s', $r_w_s);
+        return view('livewire.cetak-surat-pengantar')->with('r_t_s', $r_t_s)->with('r_w_s', $r_w_s);
     }
 
     public function updatedNik() {
@@ -71,6 +73,10 @@ class CetakSuratPengantar extends Component
         }
     }
 
+    public function removeFlashMessage() {
+        $this->emit('removeFlashMessage');
+    }
+
     public function showConfirm($on) {
         if($on == 1) {
             if($this->nik == '' ||
@@ -89,15 +95,14 @@ class CetakSuratPengantar extends Component
                 $this->alamat == '' ||
                 $this->tujuan == '' ||
                 $this->keperluan == '') {
-                    $this->flashMessage = 'Isi semua data!';
+                    session()->flash('message', 'Isi Semua Data!');
+                    $this->flashMessage = 1;
+                    $this->emit('removeFlashMessage');
             } else {
-                $this->flashMessage = '';
                 $this->confirm = $on;
             }
-            $this->emit('Cetak');
         } else {
-            $this->confirm = $on;
-            $this->emit('Cetak');   
+            $this->confirm = $on;   
         }
     }
 
