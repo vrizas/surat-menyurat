@@ -35,16 +35,20 @@ class ConfirmList extends Component
         return view('livewire.confirm-list')->with('confirms', $confirms);
     }
 
+    public function refreshComponent() {
+        $this->emit('showData');
+    }
+
     public function showConfirmDelete($id) {
         $this->confirmDelete = $id;
     }
 
-    public function showConfirmData() {
+    public function showConfirmData($id) {
         $user = Auth::user();
         $this->noRegister = DB::table('reports')->where('admin_nik', '=', $user->nik)->count() + 1;
         $this->tanggal = Carbon::now()->isoFormat('DD-MM-Y');
 
-        $this->confirmButton = 1;
+        $this->confirmButton = $id;
     }
 
     public function hideConfirmData() {

@@ -5,7 +5,7 @@
                         <h5>{{session('message')}}</h5>
                     </article>
                     @endif
-                    <button wire:click="refreshComponent" class="btn-refresh"><img src="{{asset('img/arrow-clockwise.svg')}}">Perbarui</button>
+                    <button wire:click="refreshComponent" class="btn-refresh"><i class="bi bi-arrow-repeat"></i> Perbarui</button>
                     <table>
                         <tr>
                             <th>No.</th>
@@ -22,7 +22,7 @@
                             <td>{{$confirm->keterangan}}</td>
                             <td>
                                 <button wire:click="showConfirmDelete({{$confirm->id}})"><i class='bx bxs-trash-alt'></i></button>
-                                <button wire:click="showConfirmData()"><i class='bx bxs-check-circle' ></i></button>
+                                <button wire:click="showConfirmData({{$confirm->id}})"><i class='bx bxs-check-circle' ></i></button>
                             </td>
                         </tr>
                         @if($confirmDelete == $confirm->id)
@@ -37,7 +37,7 @@
                             </div>
                         </section>
                         @endif   
-                        @if($confirmButton == 1)
+                        @if($confirmButton == $confirm->id)
                         <section class="confirm-wrapper">
                             <div class="confirm confirm-acc">
                                 <p>Masukkan data berikut pada surat</p>
