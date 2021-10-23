@@ -15,28 +15,18 @@ use App\Http\Controllers\ReportController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/create', function () {
     return view('create-surat');
 })->middleware(['auth'])->name('create-surat');
 
-Route::get('admin', function () {
-    return view('admin');
+Route::get('/', function () {
+    return view('aparat');
 })->middleware(['auth'])->name('list-cetak');
-
-Route::get('admin/data-warga', function () {
-    return view('data-warga');
-})->middleware(['auth'])->name('data-warga');
-
-Route::get('admin/data-kelurahan', function () {
-    return view('data-kelurahan');
-})->middleware(['auth'])->name('data-kelurahan');
 
 Route::get('cetak/{nik}', [PDFController::class, 'cetakSurat'])->middleware(['auth'])->name('cetak-surat');
 Route::get('download/surat/{nik}', [PDFController::class, 'downloadSurat'])->middleware(['auth'])->name('download-surat');
 
-Route::post('admin/download/buku-register', [PDFController::class, 'downloadBukuRegister'])->middleware(['auth'])->name('download-buku-register');
-
-Route::get('admin/buku-register', [ReportController::class, 'render'])->middleware(['auth'])->name('buku-register');
+Route::get('download/buku-register/{nik}', [PDFController::class, 'downloadBukuRegister'])->middleware(['auth'])->name('download-buku-register');
 
 require __DIR__.'/auth.php';
 

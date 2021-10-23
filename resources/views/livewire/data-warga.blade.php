@@ -1,4 +1,15 @@
 <div>
+                    @if(session()->has('message') && session('message') == 'Data telah dihapus' && $flashMessage == 1)
+                    <article id="flashMessage" class="pop-up" style="background-color: var(--color-red );">
+                        <i wire:click="removeFlashMessage" class='bx bx-x'></i>
+                        <h5>{{session('message')}}</h5>
+                    </article>
+                    @elseif(session()->has('message') && session('message') == 'Data berhasil diubah' && $flashMessage == 1)
+                    <article id="flashMessage" class="pop-up" style="background-color: var(--color-green );">
+                        <i wire:click="removeFlashMessage" class='bx bx-x'></i>
+                        <h5>{{session('message')}}</h5>
+                    </article>
+                    @endif
                     <section class="table-wrapper">
                         <table>
                             <tr>
@@ -84,7 +95,15 @@
                                 </div>
                                 <div>
                                     <label for="agama">Agama</label>
-                                    <input wire:model="agama" type="text" id="agama" name="agama" autocomplete="off">
+                                    <select wire:model="agama" id="agama" name="agama">
+                                        <option hidden>Pilih Salah Satu</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katholik">Katholik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Khonghucu">Khonghucu</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label for="status">Status</label>
@@ -98,7 +117,11 @@
                                 </div>
                                 <div>
                                     <label for="kewarganegaraan">Kewarganegaraan</label>
-                                    <input wire:model="negara" type="text" id="kewarganegaraan" name="kewarganegaraan" autocomplete="off">
+                                    <select wire:model="negara" id="kewarganegaraan" name="kewarganegaraan">
+                                        <option hidden>Pilih Salah Satu</option>
+                                        <option value="WNI">WNI</option>
+                                        <option value="WNA">WNA</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label for="pendidikan">Pendidikan</label>
@@ -154,4 +177,14 @@
                     </div>
                     @endif
                     @endforeach
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => { 
+                            window.livewire.on('removeFlashMessage',()=>{
+                                setTimeout(() => { 
+                                    document.querySelector('#flashMessage').remove();
+                                }, 5000);
+                            });
+                        });
+                    </script>   
 </div>

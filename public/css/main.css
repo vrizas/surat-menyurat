@@ -21,7 +21,7 @@ body {
     background-color: var(--color-white) !important;
     color: var(--color-dark-grey);
     line-height: inherit;
-    width: 100%;
+    max-width: 100%;
 }
 
 textarea {

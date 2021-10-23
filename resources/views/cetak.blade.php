@@ -113,43 +113,33 @@
                     <table>
                         <tr>
                             <td class="w-25">Mengetahui,</td>
-                            <td class="w-40"></td>
+                            <td class="w-30"></td>
                             <td class="w-25"></td>
                         </tr>
                         <tr>
                             <td class="w-25">KETUA RW {{$noRw}}</td>
-                            <td class="w-40"></td>
+                            <td class="w-30"></td>
                             <td class="w-25">KETUA RT {{$member->rt}} RW {{$noRw}}</td>
                         </tr>
                         <tr>
                             <td class="w-25">KELURAHAN LOWOKWARU</td>
-                            <td class="w-40"></td>
+                            <td class="w-30"></td>
                             <td class="w-25">KELURAHAN LOWOKWARU</td>
                         </tr>
                         <tr>
+                            <td class="nama w-25">{{$namaRw->name}}</td>
+                            <td class="w-30"></td>
+                            <td class="nama w-25">{{$namaRt->name}}</td>
+                        </tr>
+                        <tr>
                             <td class="tanda-tangan w-25"></td>
-                            <td class="w-40"></td>
+                            <td class="w-30"></td>
                             <td class="tanda-tangan w-25"></td>
                         </tr>
                     </table>
-                    <!-- <div class="rw">
-                        <p>Mengetahui,</p>
-                        <p>KETUA RW {{$noRw}}</p>
-                        <p>KELURAHAN LOWOKWARU</p>
-                        <div class="tanda-tangan"></div>
-                    </div>
-                    <div class="rt">
-                        <p style="visibility:hidden;">Mengetahui,</p>
-                        <p>KETUA RT {{$member->rt}} RW {{$noRw}}</p>
-                        <p>KELURAHAN LOWOKWARU</p>
-                        <div class="tanda-tangan"></div>
-                    </div> -->
                 </section>
             </article>
         </main>
     </section>
-    <script>
-        window.print();
-    </script>
 </body>
 </html>

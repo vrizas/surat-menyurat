@@ -14,9 +14,8 @@ use Redirect;
 
 class InputDataWarga extends Component
 {
-    public $confirm = 0;
     public $showForm = 0;
-    public $flashMessage;
+    public $flashMessage = 0;
 
     public $nik;
     public $nama;
@@ -39,18 +38,22 @@ class InputDataWarga extends Component
 
     public function render()
     {
-        $r_t_s = User::join('admins', 'admins.nik', '=', 'users.nik')
-                ->where('admins.jabatan', '=', 'RT')
-                ->orderBy('admins.rt', 'ASC')
-                ->select('admins.rt')
+        $r_t_s = User::join('aparats', 'aparats.nik', '=', 'users.nik')
+                ->where('aparats.jabatan', '=', 'RT')
+                ->orderBy('aparats.rt', 'ASC')
+                ->select('aparats.rt')
                 ->get();
 
-        $r_w_s = User::join('admins', 'admins.nik', '=', 'users.nik')
-                ->where('admins.jabatan', '=', 'RW')
-                ->orderBy('admins.rw', 'ASC')
-                ->select('admins.rw')
+        $r_w_s = User::join('aparats', 'aparats.nik', '=', 'users.nik')
+                ->where('aparats.jabatan', '=', 'RW')
+                ->orderBy('aparats.rw', 'ASC')
+                ->select('aparats.rw')
                 ->get();
-        return view('livewire.input-data-warga')->with('flashMessage', $this->flashMessage)->with('r_t_s',$r_t_s)->with('r_w_s',$r_w_s);
+        return view('livewire.input-data-warga')->with('r_t_s',$r_t_s)->with('r_w_s',$r_w_s);
+    }
+
+    public function removeFlashMessage() {
+        $this->emit('removeFlashMessage');
     }
 
     public function showForm($on) {
@@ -61,23 +64,6 @@ class InputDataWarga extends Component
     public function createData()
     {
         $member = Member::where('nik', $this->nik)->first();
-
-        $dataValid = $this->validate([
-            'nik' => 'required',
-            'nama' => 'required',
-            'jenisKelamin' => 'required',
-            'tempat' => 'required',
-            'tanggal' => 'required',
-            'agama' => 'required',
-            'status' => 'required',
-            'negara' => 'required',
-            'pendidikan' => 'required',
-            'pekerjaan' => 'required',
-            'noKk' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
-            'alamat' => 'required',
-        ]);
 
         if($this->nik == '' ||
             $this->nama == '' ||
@@ -93,35 +79,55 @@ class InputDataWarga extends Component
             $this->rt == '' ||
             $this->rw == '' ||
             $this->alamat == '') {
-            $this->flashMessage = 'Isi semua data!';
+                session()->flash('message', 'Isi semua data!');
+                $this->flashMessage = 1;
+                $this->emit('removeFlashMessage');
         } else {
-            $this->flashMessage = '';
-            $this->confirm = 0;
-            $this->emit('Show');
+            if(!$member) {
+                Member::create([
+                    'nik' =>$this->nik,
+                    'nama' =>$this->nama,
+                    'jenisKelamin' =>$this->jenisKelamin,
+                    'tempatLahir' =>$this->tempat,
+                    'tanggalLahir' =>$this->tanggal,
+                    'agama' =>$this->agama,
+                    'status' =>$this->status,
+                    'pendidikan' =>$this->pendidikan,
+                    'negara' =>$this->negara,
+                    'pekerjaan' =>$this->pekerjaan,
+                    'noKk' =>$this->noKk,
+                    'rt' =>$this->rt,
+                    'rw' =>$this->rw,
+                    'alamat' =>$this->alamat,
+                ]);
+                $this->nik = '';
+                $this->nama = '';
+                $this->jenisKelamin = '';
+                $this->tempat = '';
+                $this->tanggal = '';
+                $this->agama = '';
+                $this->status = '';
+                $this->pendidikan = '';
+                $this->negara = '';
+                $this->pekerjaan = '';
+                $this->noKk = '';
+                $this->rt = '';
+                $this->rw = '';
+                $this->alamat = '';
+    
+                $this->showForm = 0;
+    
+                session()->flash('message', 'Data berhasil ditambahkan');
+                $this->flashMessage = 1;
+                $this->emit('removeFlashMessage');
+    
+                $this->emit('dataCreated');
+            } else {
+                session()->flash('message', 'Sudah ada data dengan NIK '.$this->nik.'!');
+                $this->flashMessage = 1;
+                $this->emit('removeFlashMessage');
+            }
         }
-
-        if(!$member) {
-            Member::create([
-                'nik' =>$this->nik,
-                'nama' =>$this->nama,
-                'jenisKelamin' =>$this->jenisKelamin,
-                'tempatLahir' =>$this->tempat,
-                'tanggalLahir' =>$this->tanggal,
-                'agama' =>$this->agama,
-                'status' =>$this->status,
-                'pendidikan' =>$this->pendidikan,
-                'negara' =>$this->negara,
-                'pekerjaan' =>$this->pekerjaan,
-                'noKk' =>$this->noKk,
-                'rt' =>$this->rt,
-                'rw' =>$this->rw,
-                'alamat' =>$this->alamat,
-            ]);
-        }
-
-        $this->confirm = 0;
-        $this->showForm = 0;
-        $this->emit('dataCreated');
     } 
 }
 

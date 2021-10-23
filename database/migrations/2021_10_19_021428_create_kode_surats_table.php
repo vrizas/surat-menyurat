@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminsTable extends Migration
+class CreateKodeSuratsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('aparats', function (Blueprint $table) {
+        Schema::create('kode_surats', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('nik');
-            $table->string('jabatan')->nullable();
-            $table->integer('rt')->nullable();
-            $table->integer('rw')->nullable();
-            $table->string('noTelp')->nullable();
-            $table->string('alamat')->nullable();
+            $table->string('kode');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('kode_surats');
     }
 }

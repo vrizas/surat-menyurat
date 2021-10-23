@@ -28,7 +28,7 @@ class ConfirmList extends Component
         
         $confirms = DB::table('confirms')
                     ->join('members', 'confirms.member_nik', '=', 'members.nik')
-                    ->where('confirms.admin_nik', '=', $user->nik)
+                    ->where('confirms.aparat_nik', '=', $user->nik)
                     ->select('confirms.id', 'members.nama', 'confirms.keperluan', 'confirms.keterangan')
                     ->get();
 
@@ -45,7 +45,7 @@ class ConfirmList extends Component
 
     public function showConfirmData($id) {
         $user = Auth::user();
-        $this->noRegister = DB::table('reports')->where('admin_nik', '=', $user->nik)->count() + 1;
+        $this->noRegister = DB::table('reports')->where('aparat_nik', '=', $user->nik)->count() + 1;
         $this->tanggal = Carbon::now()->isoFormat('DD-MM-Y');
 
         $this->confirmButton = $id;
@@ -68,18 +68,52 @@ class ConfirmList extends Component
     public function confirm($id) {
         $confirm = Confirm::find($id);
         $user = Auth::user();
-    
+        $keterangan;
+        $kodeSurat;
+        if($confirm->keperluan == 'Lain-Lain') {
+            $keterangan = $confirm->keterangan;
+            $kodeSurat = 'D.1';
+        } else {
+            $keterangan = $confirm->keperluan;
+        }
+
+        if($confirm->keperluan == 'Kartu Tanda Penduduk (E-KTP)') {
+            $kodeSurat = 'D.1';
+        } else if($confirm->keperluan == 'Kartu Keluarga (KK)') {
+            $kodeSurat = 'C.3';
+        } else if($confirm->keperluan == 'Surat Kelahiran') {
+            $kodeSurat = 'A.3';
+        } else if($confirm->keperluan == 'Surat Kematian') {
+            $kodeSurat = 'A.4';
+        } else if($confirm->keperluan == 'Surat Boro Kerja') {
+            $kodeSurat = 'D.1';
+        } else if($confirm->keperluan == 'Surat Pindah') {
+            $kodeSurat = 'A.2';
+        } else if($confirm->keperluan == 'Surat Nikah') {
+            $kodeSurat = 'B.2';
+        } else if($confirm->keperluan == 'Surat Pindah Nikah') {
+            $kodeSurat = 'B.2';
+        } else if($confirm->keperluan == 'Ijin Usaha/Keterangan Usaha') {
+            $kodeSurat = 'D.1';
+        } else if($confirm->keperluan == 'Keterangan Domisili') {
+            $kodeSurat = 'C.3';
+        } else if($confirm->keperluan == 'SKCK (Surat Keterangan Catatan Kepolisian)') {
+            $kodeSurat = 'B.2';
+        } else if($confirm->keperluan == 'I M B (Ijin Mendirikan Bangunan)') {
+            $kodeSurat = 'D.1';
+        } else if($confirm->keperluan == 'SKTM (Surat Keterangan Tidak Mampu)') {
+            $kodeSurat = 'D.1';
+        }
+
         Report::create([
-            'no' => DB::table('reports')->where('admin_nik', '=', $user->nik)->count() + 1,
-            'noRegister' => DB::table('reports')->where('admin_nik', '=', $user->nik)->count() + 1,
+            'kode_surat' => $kodeSurat,
             'member_nik' => $confirm->member_nik,
             'tanggal' => Carbon::now()->isoFormat('DD-MM-Y'),
-            'tujuan' => $confirm->tujuan,
-            'keperluan' => $confirm->keperluan,
-            'keterangan' => $confirm->keterangan,
+            'keterangan' => $keterangan,
             'jenisSurat' => $confirm->jenisSurat,
-            'admin_nik' => $user->nik,
+            'aparat_nik' => $user->nik,
         ]);
+       
 
         // $dataRegister = new SheetDB('ryjcf3y4rzhc0');
         // $dataRegister->create([

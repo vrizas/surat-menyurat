@@ -15,6 +15,6 @@ class Confirm extends Model
         'keperluan',
         'keterangan',
         'jenisSurat',
-        'admin_nik',
+        'aparat_nik',
     ];
 }

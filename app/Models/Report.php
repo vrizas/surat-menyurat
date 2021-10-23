@@ -10,14 +10,11 @@ class Report extends Model
     use HasFactory;
 
     protected $fillable = [
-        'no',
         'member_nik',
-        'noRegister',
+        'kode_surat',
         'tanggal',
-        'tujuan',
-        'keperluan',
         'keterangan',
         'jenisSurat',
-        'admin_nik',
+        'aparat_nik',
     ];
 }

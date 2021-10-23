@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use PDF;
 use App\Models\Member;
 use App\Models\Report;
+use App\Models\User;
 use App\Models\Confirm;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use DB;
 
@@ -26,19 +28,37 @@ class PDFController extends Controller
         $confirm = Confirm::where('member_nik', $nik)->latest()->first();
         $data = $this->getData($nik);
         
+        
         $pdf = PDF::loadView('cetak', $data)->setPaper('a4', 'potrait');
         return $pdf->download($confirm->jenisSurat.'_'.$member->nama.'.pdf');
     }
 
-    public function downloadBukuRegister() {
+    public function downloadBukuRegister($nik) {
+        setlocale(LC_TIME, 'id_ID');
+        \Carbon\Carbon::setLocale('id');
+        \Carbon\Carbon::now()->formatLocalized("%A, %d %B %Y");
+        
+        $nikUser = Auth::user()->nik;
+        if($nikUser != $nik) {
+            return view('livewire.failed');
+        }
         $reports = DB::table('reports')
                     ->join('members', 'reports.member_nik', '=', 'members.nik')
-                    ->select('reports.id','reports.no','reports.noRegister','members.nama','reports.tanggal','reports.keperluan')
+                    ->where('reports.aparat_nik', $nik)
+                    ->select('reports.*', 'members.nama', 'members.status', 'members.alamat', 'members.tempatLahir', 'members.tanggalLahir')
                     ->get();
+        $tanggalLahir = array();
+
+        foreach($reports as $report) {
+            $tanggal = Carbon::parse($report->tanggalLahir)->isoFormat('D MMMM Y');
+            array_push($tanggalLahir, $tanggal);
+        }
+
         $data = [
             'reports' => $reports,
+            'tanggalLahir' => $tanggalLahir,
         ];
-
+        
         $pdf = PDF::loadView('download-buku-register', $data)->setPaper('a4', 'potrait');;
         return $pdf->download('buku-register.pdf');
     }
@@ -53,6 +73,20 @@ class PDFController extends Controller
         $tempatLahir = Member::select('tempatLahir')->where('nik', $nik)->first()->tempatLahir;
         $ttl = $tempatLahir . ', ' . Carbon::parse($tanggalLahir)->isoFormat('D MMMM Y');
         $confirm = Confirm::where('member_nik', $nik)->latest()->first();
+        $namaRt = User::join('aparats', 'aparats.nik', '=', 'users.nik')
+                    ->where([
+                        ['rt', '=', $member->rt],
+                        ['jabatan', '=', 'RT'],        
+                    ])
+                    ->select('users.name')
+                    ->first();
+        $namaRw = User::join('aparats', 'aparats.nik', '=', 'users.nik')
+                    ->where([
+                        ['rt', '=', $member->rw],
+                        ['jabatan', '=', 'RW'],        
+                    ])
+                    ->select('users.name')
+                    ->first();
 
         $today = Carbon::now()->isoFormat('D MMMM Y');
         $year = Carbon::now()->isoFormat('Y');
@@ -66,6 +100,8 @@ class PDFController extends Controller
             'year' => $year,
             'rmwMonth' => changeToRomawi($month),
             'noRw' => changeToRomawi($member->rw),
+            'namaRt' => $namaRt,
+            'namaRw' => $namaRw,
         ];
         return $data;
     }

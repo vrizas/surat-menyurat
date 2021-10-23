@@ -15,15 +15,12 @@ class Report extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('no');
             $table->bigInteger('member_nik');
-            $table->string('noRegister');
             $table->string('tanggal');
-            $table->string('tujuan');
-            $table->string('keperluan');
+            $table->string('kode_surat');
             $table->string('keterangan');
             $table->string('jenisSurat');
-            $table->bigInteger('admin_nik');
+            $table->bigInteger('aparat_nik');
             $table->timestamps(); 
         });
     }

@@ -2,23 +2,24 @@ header nav {
     margin-top: 30px;
 }
 
-header.admin {
+header.aparat {
     width: 100%;
     height: 70px;
     display: flex;
     padding: 20px 25px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     background-color: var(--color-blue);
-    position: fixed;
+    position: -webkit-sticky;
+    position: sticky;
     top: 0;
     z-index: 101;
 }
 
-header.admin .logo {
+header.aparat .logo {
     margin-right: 0;
 }
 
-header.admin .logo h1, header.admin .logo p {
+header.aparat .logo h1, header.aparat .logo p {
     color: var(--color-white);
 }
 
@@ -39,6 +40,7 @@ nav ul {
     flex-direction: column;
     font-size: 18px;
     margin-top: 70px;
+    width: 100%;
 }
 
 nav button, nav form {
@@ -51,12 +53,15 @@ nav button {
     color: var(--color-dark-grey);
     text-align: left;
     font-size: 14px;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 nav li {
     list-style-type: none;
     border-bottom: .5px solid rgba(153, 153, 153, .15);
     height: 60px;
+    width: 100%;
 }
 
 nav button i {
@@ -68,7 +73,7 @@ nav li:nth-last-child(1) {
     padding: 10px 0;
 }
 
-nav .btn-logout {
+.btn-logout {
     background-color: var(--color-red);
     color: var(--color-white);
 }
@@ -76,7 +81,6 @@ nav .btn-logout {
 article, footer {
     width: 82%;
     margin-left: 18%;
-    margin-top: 70px;
 }
 
 article h3 {
@@ -143,19 +147,19 @@ tr th:nth-child(1), tr td:nth-child(1) {
     text-align: center;
 }
 
-.home tr td:nth-child(1) {
+.dashboard tr td:nth-child(1) {
     width: 7%;
 }
 
-.home tr td:nth-child(2) {
+.dashboard tr td:nth-child(2) {
     width: 22%;
 }
 
-.home tr td:nth-child(3) {
+.dashboard tr td:nth-child(3) {
     width: 22%;
 }
 
-.home tr td:nth-child(4) {
+.dashboard tr td:nth-child(4) {
     width: 34%;
 }
 
@@ -256,16 +260,16 @@ table button {
     background-color: var(--color-blue);
 }
 
-.home, .buku-register, .data-warga {
+.dashboard, .buat-surat, .buku-register, .data-warga {
     padding: 30px 0;
 }
 
-.home h2 {
+.dashboard h2 {
     margin-bottom: 20px;
     color: var(--color-grey);
 }
 
-.home h3, .home h2, .home .btn-refresh, .buku-register h3, .buku-register .btn-download, .data-warga h3, .data-warga .btn-add {
+.dashboard h3, .dashboard h2, .dashboard .btn-refresh, .buat-surat h3, .buat-surat ul, .buku-register h3, .buku-register .btn-download, .data-warga h3, .data-warga .btn-add {
     margin-left: 30px;
 }
 
@@ -317,6 +321,7 @@ table button {
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
     border-radius: 5px;
+    min-height: 45px;
 }
 
 .list {
@@ -384,7 +389,7 @@ p.warning {
     margin-bottom: 10px;
 }
 
-.data-warga .table-wrapper {
+.data-warga .table-wrapper, .buku-register .table-wrapper, .dashboard .table-wrapper {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
@@ -485,8 +490,131 @@ input[type=number] {
     margin-bottom: 20px;
 }
 
-.flashMessage {
+.red {
     color: var(--color-red);
+}
+
+.contoh {
+    color: var(--color-grey);
+    margin-left: 5px;
+    font-size: 11px;
+}
+
+.buat-surat ul {
+    margin-right: 30px;
+}
+
+.buat-surat li {
+    width: 100%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    list-style-type: none;
+    font-size: 15px;
+}
+
+.buat-surat li button {
+    background-color: transparent;
+    text-decoration: underline;
+    color: var(--color-blue);
+}
+
+.buat-surat textarea, .buat-surat select {
+    background-color: var(--color-white);
+    border-color: var(--color-dark-grey);
+}
+
+.buat-surat form.surat-pengantar {
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    flex-wrap: wrap;
+    gap: 11px;
+    margin: 10px 30px 0;
+}
+
+.buat-surat form.surat-pengantar div {
+    width: 25%;
+}
+
+.buat-surat input, .buat-surat textarea, .buat-surat select {
+    padding: 10px 15px;
+    width: 100%;
+    display: block;
+    margin-top: 3px;
+    font-family: 'Arial', sans-serif;
+}
+
+.buat-surat label {
+    font-size: 14px;
+}
+
+.buat-surat .buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.buat-surat button {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.buat-surat button.back {
+    background-color: var(--color-green) !important;
+}
+
+.buat-surat button:nth-last-child(1) {
+    margin-right: 0;
+}
+
+.buat-surat button.next {
+    margin-right: 0;
+}
+
+.buat-surat .confirm .bxs-check-circle {
+    font-size: 70px;
+    margin-bottom: 10px;
+    color: var(--color-green);
+}
+
+.buat-surat .confirm .bx-x {
+    background-color: transparent;
+    padding: 0;
+    position: absolute;
+    font-size: 30px;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.buat-surat .confirm p {
+    font-size: 12px;
+    color: var(--color-yellow);
+}
+
+.buat-surat .confirm .action {
+    margin: 20px 0 25px;
+}
+
+.buat-surat .confirm .action button i {
+    margin-right: 5px;
+}
+
+.buat-surat .confirm button {
+    background-color: var(--color-blue);
+}
+
+.buat-surat .confirm button:nth-last-child(1) {
+    background-color: var(--color-blue);
+}
+
+.buat-surat input#keterangan {
+    margin-top: 10px;
 }
 
 #flashMessage {
@@ -499,6 +627,7 @@ input[type=number] {
     padding: 15px 25px;
     transform: translateX(0);
     width: fit-content;
+    z-index: 9999999;
 }
 
 #flashMessage i {
@@ -522,3 +651,113 @@ input[type=number] {
     85% {transform: translateX(5px);}
     100% {transform: translateX(400px);}
 }
+
+@media only screen and (max-width: 1000px) {
+    nav {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 10%;
+        padding: 0;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    }
+
+    nav ul {
+        margin-top: 0;
+        flex-direction: row;
+    }
+
+    nav li {
+        text-align: center;
+    }
+
+    nav button {
+        width: 90px;
+        height: inherit;
+        padding: 0;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    nav li:nth-child(1) button {
+        width: 70px;
+    }
+
+    nav li:nth-last-child(1) {
+        padding: 0;
+    }
+
+    nav button i {
+        display: block;
+        margin-bottom: 3px;
+        margin-right: 0;
+    }
+
+    article {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 10%;
+    }
+
+    .buat-surat form.surat-pengantar {
+        height: auto;
+        flex-wrap: nowrap;
+    }
+
+    .buat-surat form.surat-pengantar div {
+        width: 100%;
+    }
+
+    .data-warga .form-container {
+        width: 95%;
+        overflow: auto;
+    }
+
+    .data-warga .form {
+        height: auto;
+        flex-wrap: nowrap;
+        margin-bottom: 0;
+    }
+
+    .data-warga .form div {
+        width: 100%;
+    }
+
+    .data-warga .buttons {
+        margin-top: 20px;
+    }
+
+    .profile input, .profile textarea, .profile .list p {
+        width: 100%;
+    }
+
+    .edit-password {
+        width: 100%;
+    }
+
+    .btn-logout {
+        position: absolute;
+        right: 20px;
+        top: 18px;
+    }
+
+    .btn-logout i {
+        margin-right: 3px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    nav button {
+        width: 70px;
+    }
+
+    .btn-logout {
+        right: 5px;
+    }
+
+    header.aparat {
+        padding: 5px 10px;
+    }
+}
+

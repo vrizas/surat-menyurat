@@ -12,20 +12,36 @@
     <table>
         <tr>
             <th>No.</th>
-            <th>No. Register RW</th>
+            <th>Tgl.</th>
+            <th>Kode Surat</th>
             <th>Nama</th>
-            <th>Tanggal</th>
-            <th>Keperluan</th>
+            <th>Status</th>
+            <th>Tempat/Tgl. Lahir</th>
+            <th>Alamat</th>
+            <th>Keterangan</th>
         </tr>
-        @foreach($reports as $report)
+        @foreach($reports as $key => $report)
         <tr>
-            <td>{{$report->no}}</td>
-            <td>{{$report->noRegister}}</td>
-            <td>{{$report->nama}}</td>
+            <td>{{$key+1}}</td>
             <td>{{$report->tanggal}}</td>
-            <td>{{$report->keperluan}}</td>
+            <td>{{$report->kode_surat}}</td>
+            <td>{{$report->nama}}</td>
+            <td>{{$report->status}}</td>
+            <td>{{$report->tempatLahir}}, {{$tanggalLahir[$key]}}</td>
+            <td>{{$report->alamat}}</td>
+            <td>{{$report->keterangan}}</td>
         </tr>
         @endforeach
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
     </table>
 </main>
 </body>

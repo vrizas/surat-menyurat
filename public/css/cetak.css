@@ -9,6 +9,10 @@
     box-sizing: border-box;
 }
 
+body {
+    padding: 0 40px;
+}
+
 header {
     text-align: center;
     padding: 15px;
@@ -97,11 +101,15 @@ table.data-warga {
     width: 25%;
 }
 
-.w-40 {
-    width: 40%;
+.w-30 {
+    width: 30%;
 }
 
 .mengetahui .tanda-tangan {
     border-bottom: 1px solid black;
+}
+
+.mengetahui .nama {
+    text-align: center;
     padding: 105px 0 0 0;
 }

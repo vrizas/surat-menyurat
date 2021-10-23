@@ -12,6 +12,7 @@ class DataWarga extends Component
 {
     public $confirmDelete = 0;
     public $showEditForm = 0;
+    public $flashMessage = 0;
 
     public $nik;
     public $nama;
@@ -39,16 +40,16 @@ class DataWarga extends Component
         \Carbon\Carbon::now()->formatLocalized("%A, %d %B %Y");
         
         $members = DB::table('members')->orderBy('nik', 'ASC')->get();
-        $r_t_s = User::join('admins', 'admins.nik', '=', 'users.nik')
-                ->where('admins.jabatan', '=', 'RT')
-                ->orderBy('admins.rt', 'ASC')
-                ->select('admins.rt')
+        $r_t_s = User::join('aparats', 'aparats.nik', '=', 'users.nik')
+                ->where('aparats.jabatan', '=', 'RT')
+                ->orderBy('aparats.rt', 'ASC')
+                ->select('aparats.rt')
                 ->get();
 
-        $r_w_s = User::join('admins', 'admins.nik', '=', 'users.nik')
-                ->where('admins.jabatan', '=', 'RW')
-                ->orderBy('admins.rw', 'ASC')
-                ->select('admins.rw')
+        $r_w_s = User::join('aparats', 'aparats.nik', '=', 'users.nik')
+                ->where('aparats.jabatan', '=', 'RW')
+                ->orderBy('aparats.rw', 'ASC')
+                ->select('aparats.rw')
                 ->get();
 
         $ttl = array();
@@ -88,6 +89,10 @@ class DataWarga extends Component
         $this->showEditForm = $id;
     }
 
+    public function removeFlashMessage() {
+        $this->emit('removeFlashMessage');
+    }
+
     public function batalUpdateData() {
         $this->showEditForm = 0;
     }
@@ -116,12 +121,17 @@ class DataWarga extends Component
         $member->save();
 
         $this->showEditForm = 0;
-        $this->emit('dataCreated');
+        session()->flash('message', 'Data berhasil diubah');
+        $this->flashMessage = 1;
+        $this->emit('removeFlashMessage');
     } 
     
     public function deleteData($id) {
         $member = Member::find($id);
         $member->delete();
+        session()->flash('message', 'Data telah dihapus');
+        $this->flashMessage = 1;
+        $this->emit('removeFlashMessage');
         $confirmDelete = 0;
     }
 }

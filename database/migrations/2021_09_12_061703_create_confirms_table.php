@@ -16,11 +16,10 @@ class CreateConfirmsTable extends Migration
         Schema::create('confirms', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('member_nik');
-            $table->string('tujuan');
             $table->string('keperluan');
             $table->string('keterangan');
             $table->string('jenisSurat');
-            $table->bigInteger('admin_nik');
+            $table->bigInteger('aparat_nik');
             $table->timestamps();
         });
     }

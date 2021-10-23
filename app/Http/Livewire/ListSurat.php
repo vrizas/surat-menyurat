@@ -10,7 +10,7 @@ use Livewire\Component;
 use SheetDB\SheetDB;
 use Redirect;
 
-class CetakSuratPengantar extends Component
+class ListSurat extends Component
 {
     public $confirm = 0;
     public $flashMessage = 0;
@@ -28,14 +28,10 @@ class CetakSuratPengantar extends Component
     public $noKk;
     public $rt;
     public $rw;
-    public $alamat;
-    public $tujuan;  
-    public $keperluan;  
-    public $keterangan = '';  
-
-    protected $listeners = [
-        'Cetak' => '$refresh'
-    ];
+    public $alamat;  
+    public $keperluan;   
+    public $keterangan = '';   
+    public $suratPengantar = 0;
 
     public function render()
     {
@@ -51,7 +47,11 @@ class CetakSuratPengantar extends Component
                 ->select('aparats.rw')
                 ->get();
                     
-        return view('livewire.cetak-surat-pengantar')->with('r_t_s', $r_t_s)->with('r_w_s', $r_w_s);
+        return view('livewire.list-surat')->with('r_t_s', $r_t_s)->with('r_w_s', $r_w_s);
+    }
+
+    public function showFormSuratPengantar($on) {
+        $this->suratPengantar = $on;
     }
 
     public function updatedNik() {
@@ -77,7 +77,7 @@ class CetakSuratPengantar extends Component
         $this->emit('removeFlashMessage');
     }
 
-    public function showConfirm($on) {
+    public function showConfirmSuratPengantar($on) {
         if($on == 1) {
             if($this->nik == '' ||
                 $this->nama == '' ||
@@ -93,7 +93,6 @@ class CetakSuratPengantar extends Component
                 $this->rt == '' ||
                 $this->rw == '' ||
                 $this->alamat == '' ||
-                $this->tujuan == '' ||
                 $this->keperluan == '') {
                     session()->flash('message', 'Isi Semua Data!');
                     $this->flashMessage = 1;
@@ -106,13 +105,13 @@ class CetakSuratPengantar extends Component
         }
     }
 
-    public function downloadSurat() {
+    public function downloadSuratPengantar() {
         $this->createData();
         $this->confirm = 0;
         return redirect()->to('download/surat/'.$this->nik);
     }
 
-    public function cetakSurat()
+    public function cetakSuratPengantar()
     {
         $this->createData();
         $this->confirm = 0;
@@ -137,7 +136,6 @@ class CetakSuratPengantar extends Component
             'rt' => 'required',
             'rw' => 'required',
             'alamat' => 'required',
-            'tujuan' => 'required',
             'keperluan' => 'required',
         ]);
 
@@ -195,7 +193,6 @@ class CetakSuratPengantar extends Component
 
         Confirm::create([
             'member_nik' => $this->nik,
-            'tujuan' => $this->tujuan,
             'keperluan' => $this->keperluan,
             'keterangan' => $this->keterangan,
             'jenisSurat' => 'Surat Pengantar',
@@ -204,12 +201,10 @@ class CetakSuratPengantar extends Component
 
         Confirm::create([
             'member_nik' => $this->nik,
-            'tujuan' => $this->tujuan,
             'keperluan' => $this->keperluan,
             'keterangan' => $this->keterangan,
             'jenisSurat' => 'Surat Pengantar',
             'aparat_nik' => $aparatRw->nik,
         ]);
     }
-    
 }

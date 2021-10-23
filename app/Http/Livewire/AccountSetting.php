@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
-use App\Models\Admin;
+use App\Models\Aparat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,7 +30,7 @@ class AccountSetting extends Component
     public function render()
     {
         $nik = Auth::user()->nik;
-        $user = User::join('admins', 'admins.nik', '=', 'users.nik')
+        $user = User::join('aparats', 'aparats.nik', '=', 'users.nik')
                 ->where('users.nik', '=', $nik)
                 ->first();
 
@@ -39,7 +39,7 @@ class AccountSetting extends Component
 
     public function showEditProfile($id) {
         $nik = Auth::user()->nik;
-        $user = User::join('admins', 'admins.nik', '=', 'users.nik')
+        $user = User::join('aparats', 'aparats.nik', '=', 'users.nik')
                 ->where('users.nik', '=', $nik)
                 ->first();
 
@@ -65,21 +65,22 @@ class AccountSetting extends Component
 
     public function updateData($id) {
         $nik = Auth::user()->nik;
+
         $user = User::find($id);
-        $admin = Admin::join('users', 'admins.nik', '=', 'users.nik')
+        $aparat = Aparat::join('users', 'aparats.nik', '=', 'users.nik')
                 ->where('users.nik', '=', $nik)
-                ->select('admins.*')
+                ->select('aparats.*')
                 ->first();
         
         $user->name = $this->name;
         $user->nik = $this->nik;
         $user->save();
 
-        $admin->nik = $this->nik;
-        $admin->jabatan = $this->jabatan;
-        $admin->noTelp = $this->noTelp;
-        $admin->alamat = $this->alamat;
-        $admin->save();
+        $aparat->nik = $this->nik;
+        $aparat->jabatan = $this->jabatan;
+        $aparat->noTelp = $this->noTelp;
+        $aparat->alamat = $this->alamat;
+        $aparat->save();
 
         $this->editProfile = 0;
 
@@ -90,7 +91,7 @@ class AccountSetting extends Component
 
     public function updatePassword($id) {
         $user = User::find($id);
-        if($this->password == $this->confirmPassword) {
+        if($this->password == $this->confirmPassword && $this->password != '') {
             $user->password = Hash::make($this->password);
             $user->save();
             $this->password = '';
