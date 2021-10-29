@@ -29,10 +29,9 @@ Route::get('download/surat/{nik}', [PDFController::class, 'downloadSurat'])->mid
 
 Route::get('download/buku-register/{nik}', [PDFController::class, 'downloadBukuRegister'])->middleware(['auth'])->name('download-buku-register');
 
-Route::resource('/admin',App\Http\Controllers\AdminController::class);
-Route::post('/admin',[AdminController::class, 'store']);
-Route::resource('/admin/data-aparat',App\Http\Controllers\DaftarAparatController::class);
-// Route::get('/admin/data-aparat',[DaftarAparatController::class, 'dataAparat']);
+Route::get('/admin',[AdminController::class, 'index'])->middleware(['auth']);
+Route::post('/admin',[AdminController::class, 'store'])->middleware(['auth']);
+Route::get('/admin/register',[AdminController::class, 'showFormDaftar'])->middleware(['auth']);
 
 require __DIR__.'/auth.php';
 

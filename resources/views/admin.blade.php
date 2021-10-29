@@ -8,37 +8,42 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li ><a href="{{ url('/admin/data-aparat') }}">Aparat Terdaftar</a></li>
-        </ul>
-    </nav>
-    
-
-    <h1>Halaman Admin</h1>
-    <h2>FORM HALAMAN REGISTER APARAT</h2>
-    <div class ="from-tambah-aparat">
-    
-        <form action="{{ url('admin') }}" method="post" enctype ="multipart/form-data">
-        @csrf
-            <label for="nik">NIK</label>
-            <input id="nik" type="text" name="nik">
-            <label for="nama">Nama</label>
-            <input id="nama" type="text" name="name">
-            <label for="">Email</label>
-            <input id="email" type="email" name="email">
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password">
-            <label for="jabatan">Jabatan</label>
-            <input id="jabatan" type="text" name="jabatan">
-            <label for="rt">RT</label>
-            <input id="rt" type="text" name="rt">
-            <label for="rw">RW</label>
-            <input id="rw" type="text" name="rw">
-            <button type="submit">Submit</button>
-        </form>
-        
+    <div class="flex-container">
+        <nav class="navbar">
+            <ul>
+                <li ><a href="{{ url('/admin') }}">Aparat Terdaftar</a></li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="btn-logout"><i class='bx bx-log-out'></i>Keluar</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <main>
+            <h2>Halaman Admin</h2>
+            <h3>FORM HALAMAN REGISTER APARAT</h3>
+            <div class ="from-tambah-aparat">            
+                <form action="{{ url('admin') }}" method="post" enctype ="multipart/form-data">
+                @csrf
+                    <label for="nik">NIK</label>
+                    <input id="nik" type="text" name="nik" required>
+                    <label for="nama">Nama</label>
+                    <input id="nama" type="text" name="name" required>
+                    <label for="">Email</label>
+                    <input id="email" type="email" name="email" required>
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" required>
+                    <label for="jabatan">Jabatan</label>
+                    <input id="jabatan" type="text" name="jabatan" required>
+                    <label for="rt">RT</label>
+                    <input id="rt" type="text" name="rt" required>
+                    <label for="rw">RW</label>
+                    <input id="rw" type="text" name="rw" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </main>
     </div>
-    
 </body>
 </html>

@@ -22,7 +22,17 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin');
+        $aparats = DB::table('aparats')
+        ->select('aparats.id', 'aparats.jabatan' , 'aparats.rt' , 'aparats.rw')
+        ->get();
+
+        $role = Auth::user()->role;
+
+        if($role != 'Admin') {
+            return view('livewire.failed');
+        }
+        
+        return view('admin2')->with('aparats', $aparats);
     }
 
     /**
@@ -44,15 +54,15 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'nik' => 'required',
-        //     'name' => ['required', 'string', 'max:255'],
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        //     'jabatan' => 'required',
-        //     'rt' => 'required',
-        //     'rw' => 'required',
-        // ]);
+        $request->validate([
+            'nik' => 'required',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', Rules\Password::defaults()],
+            'jabatan' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
+        ]);
 
         User::create([
             'nik' => $request->nik,
@@ -72,17 +82,22 @@ class AdminController extends Controller
         ]);
     
        
+        $aparats = DB::table('aparats')
+        ->select('aparats.id', 'aparats.jabatan' , 'aparats.rt' , 'aparats.rw')
+        ->get();
         
+        return view('admin2')->with('aparats', $aparats);
     }
     
-    // public function daftarAparat(){
-    //     $aparats = DB::table('aparats')
-    //     ->select('aparats.id', 'aparats.jabatan' , 'aparats.rt' , 'aparats.rw')
-    //     ->get();
-        
-    //     return view('admin2')->with('aparats', $aparats);
+    public function showFormDaftar(){
+        $role = Auth::user()->role;
 
-    // }
+        if($role != 'Admin') {
+            return view('livewire.failed');
+        }
+
+        return view('admin');
+    }
     
     /**
      * Display the specified resource.
