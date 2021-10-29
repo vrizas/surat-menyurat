@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,11 @@ Route::get('cetak/{nik}', [PDFController::class, 'cetakSurat'])->middleware(['au
 Route::get('download/surat/{nik}', [PDFController::class, 'downloadSurat'])->middleware(['auth'])->name('download-surat');
 
 Route::get('download/buku-register/{nik}', [PDFController::class, 'downloadBukuRegister'])->middleware(['auth'])->name('download-buku-register');
+
+Route::resource('/admin',App\Http\Controllers\AdminController::class);
+Route::post('/admin',[AdminController::class, 'store']);
+Route::resource('/admin/data-aparat',App\Http\Controllers\DaftarAparatController::class);
+// Route::get('/admin/data-aparat',[DaftarAparatController::class, 'dataAparat']);
 
 require __DIR__.'/auth.php';
 
