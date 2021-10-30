@@ -5,19 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <title>Admin Butuh Surat</title>
 </head>
+
 <body>
+           
+                
+            
     <div class="flex-container">
         <nav class="navbar">
             <ul>
-                <li ><a href="{{ url('/admin') }}">Aparat Terdaftar</a></li>
+                <li class="logo-surat-admin">
+                    <a href="{{ url('/admin') }}" class="logo">
+                        <img src="{{asset('img/logo.svg')}}" alt="Logo Butuh Surat">
+                        <div class='text'>
+                            <h1>Butuh Surat</h1>
+                            <p>Surat Menyurat Kelurahan Lowokwaru</p>
+                        </div>
+                    </a>
+                </li>
+                <li ><a href="{{ url('/admin') }}"><i class='bx bx-table' ></i> Aparat Terdaftar</a></li>
+                <hr style="border-color:black;">
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button class="btn-logout"><i class='bx bx-log-out'></i>Keluar</button>
                     </form>
                 </li>
+                <hr style="border-color:black;">
             </ul>
         </nav>
         <main>
@@ -40,7 +56,7 @@
                     <input id="rt" type="text" name="rt" required>
                     <label for="rw">RW</label>
                     <input id="rw" type="text" name="rw" required>
-                    <button type="submit">Submit</button>
+                    <button class="submit-register" type="submit">Submit</button>
                 </form>
             </div>
         </main>

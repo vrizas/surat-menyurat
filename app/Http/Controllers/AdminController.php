@@ -24,6 +24,8 @@ class AdminController extends Controller
     {
         $aparats = DB::table('aparats')
         ->select('aparats.id', 'aparats.jabatan' , 'aparats.rt' , 'aparats.rw')
+        ->orderBy('aparats.rt', 'asc')
+        ->orderBy('aparats.rw', 'asc')
         ->get();
 
         $role = Auth::user()->role;
@@ -84,6 +86,8 @@ class AdminController extends Controller
        
         $aparats = DB::table('aparats')
         ->select('aparats.id', 'aparats.jabatan' , 'aparats.rt' , 'aparats.rw')
+        ->orderBy('aparats.rt', 'asc')
+        ->orderBy('aparats.rw', 'asc')
         ->get();
         
         return view('admin2')->with('aparats', $aparats);
