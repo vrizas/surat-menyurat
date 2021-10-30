@@ -32,8 +32,9 @@ class AccountSetting extends Component
         $nik = Auth::user()->nik;
         $user = User::join('aparats', 'aparats.nik', '=', 'users.nik')
                 ->where('users.nik', '=', $nik)
+                ->select('users.*','aparats.nik','aparats.jabatan','aparats.rt','aparats.rw','aparats.noTelp','aparats.alamat')
                 ->first();
-
+    
         return view('livewire.account-setting')->with('user', $user);
     }
 
@@ -67,6 +68,7 @@ class AccountSetting extends Component
         $nik = Auth::user()->nik;
 
         $user = User::find($id);
+       
         $aparat = Aparat::join('users', 'aparats.nik', '=', 'users.nik')
                 ->where('users.nik', '=', $nik)
                 ->select('aparats.*')

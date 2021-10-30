@@ -43,14 +43,6 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <!-- @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Lupa password?') }}
-                    </a>
-                @endif -->
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
-                        {{ __('Belum Terdaftar?') }}
-                </a>
 
                 <x-button class="ml-3" style="background-color: #1976d2;">
                     {{ __('Masuk') }}

@@ -1,4 +1,5 @@
 <div>
+
                     @if(session()->has('message') && $flashMessage == 1)
                     <article id="flashMessage" class="pop-up">
                         <i wire:click="removeFlashMessage" class='bx bx-x'></i>
@@ -50,11 +51,11 @@
                         </div>
                         <div class="list">
                             <label for="name">Nama</label>
-                            <input wire:model="name" type="text" id="name">
+                            <input wire:model="name" type="text" id="name" name="name">
                         </div>
                         <div class="list">
                             <label for="nik">NIK</label>
-                            <input wire:model="nik" type="text" id="nik">
+                            <input wire:model="nik" type="text" id="nik" name="nik">
                         </div>
                         <div class="list">
                             <label for="jabatan">Jabatan</label>
@@ -70,7 +71,7 @@
                         </div>
                         <div class="list">
                             <label for="noTelp">No. Telp (WA)</label>
-                            <input wire:model="noTelp" type="text" id="noTelp"> 
+                            <input wire:model="noTelp" type="text" id="noTelp" name="noTelp"> 
                         </div>
                         <div class="list">
                             <label for="alamat">Alamat</label>
