@@ -7,6 +7,8 @@ use DB;
 use Carbon\Carbon;
 use App\Models\Member;
 use App\Models\User;
+use App\Models\Aparat;
+use Illuminate\Support\Facades\Auth;
 
 class DataWarga extends Component
 {
@@ -38,8 +40,29 @@ class DataWarga extends Component
         setlocale(LC_TIME, 'id_ID');
         \Carbon\Carbon::setLocale('id');
         \Carbon\Carbon::now()->formatLocalized("%A, %d %B %Y");
+
+        $nik = Auth::user()->nik;
+        $jabatan = Aparat::where('nik', '=', $nik)->first()->jabatan;
+        $members;
         
-        $members = DB::table('members')->orderBy('nik', 'ASC')->get();
+        if($jabatan == 'RW') {
+            $rw = Aparat::where('nik', '=', $nik)->first()->rw;
+            $members = DB::table('members')
+                    ->where('rw', '=', $rw)
+                    ->orderBy('nik', 'ASC')
+                    ->get();
+        } else if($jabatan == 'RT') {
+            $rt = Aparat::where('nik', '=', $nik)->first()->rt;
+            $rw = Aparat::where('nik', '=', $nik)->first()->rw;
+            $members = DB::table('members')
+                    ->where([
+                        ['rt', '=', $rt],
+                        ['rw', '=', $rw],
+                        ])
+                    ->orderBy('nik', 'ASC')
+                    ->get();
+        }
+        
         $r_t_s = User::join('aparats', 'aparats.nik', '=', 'users.nik')
                 ->where('aparats.jabatan', '=', 'RT')
                 ->orderBy('aparats.rt', 'ASC')
